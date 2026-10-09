@@ -423,6 +423,69 @@
       "report_sha256": "3e47da67ee27853744358e73cbe896f74426ccf79d716360d06897874f508231",
       "snapshots_sha256": "57f72c0acee65b2676a1e9f1c46379e9517cec4e1b3962d70be9be60d52f3e64",
       "finished_at": "2026-10-03T18:14:28.668239+00:00"
+    },
+    {
+      "scenario": "baseline",
+      "backend": "sqlite",
+      "status": "passed",
+      "phases": 15,
+      "report_sha256": "dbe728adc6483acda498921dd100614f689c456315053a51cc8d4d68e3397e49",
+      "snapshots_sha256": "80a5ba9a92993957a10d14b5993cecebcdb3ad543e765233b885da0f4728a7c6",
+      "finished_at": "2026-10-09T21:49:06.598888+00:00"
+    },
+    {
+      "scenario": "conflicts",
+      "backend": "sqlite",
+      "status": "passed",
+      "phases": 21,
+      "report_sha256": "88b60f5b6532e3a05e9bc93ec9218761c64ad85224d5c05bbbcac8f2627dfad6",
+      "snapshots_sha256": "460a797c96eb9ff6ede54cda9365dba6acfe486162fed73e7668f8132a70634a",
+      "finished_at": "2026-10-09T22:01:11.383131+00:00"
+    },
+    {
+      "scenario": "filing",
+      "backend": "sqlite",
+      "status": "passed",
+      "phases": 7,
+      "report_sha256": "88b60f5b6532e3a05e9bc93ec9218761c64ad85224d5c05bbbcac8f2627dfad6",
+      "snapshots_sha256": "f030c74376261e7c399f22e15354caebbd971b75d3e0599265e7dbb61ebaec93",
+      "finished_at": "2026-10-09T22:01:11.383131+00:00"
+    },
+    {
+      "scenario": "groups",
+      "backend": "sqlite",
+      "status": "passed",
+      "phases": 19,
+      "report_sha256": "88b60f5b6532e3a05e9bc93ec9218761c64ad85224d5c05bbbcac8f2627dfad6",
+      "snapshots_sha256": "395b2b1d860f5c35f7caf285b4fe893a7880043fe5b3c1dacf00941d2994dacc",
+      "finished_at": "2026-10-09T22:01:11.383131+00:00"
+    },
+    {
+      "scenario": "files",
+      "backend": "sqlite",
+      "status": "passed",
+      "phases": 20,
+      "report_sha256": "88b60f5b6532e3a05e9bc93ec9218761c64ad85224d5c05bbbcac8f2627dfad6",
+      "snapshots_sha256": "4150509e1b48d956fa10b71dc1d146994c8468f2fc6cf5fce07ed7c9d66b0edb",
+      "finished_at": "2026-10-09T22:01:11.383131+00:00"
+    },
+    {
+      "scenario": "relationships",
+      "backend": "sqlite",
+      "status": "passed",
+      "phases": 6,
+      "report_sha256": "88b60f5b6532e3a05e9bc93ec9218761c64ad85224d5c05bbbcac8f2627dfad6",
+      "snapshots_sha256": "d4f2358c474c5fb141e1c258414f7af8cec632b30039efbf1f14952a8a1f9f5e",
+      "finished_at": "2026-10-09T22:01:11.383131+00:00"
+    },
+    {
+      "scenario": "credentials",
+      "backend": "sqlite",
+      "status": "passed",
+      "phases": 12,
+      "report_sha256": "88b60f5b6532e3a05e9bc93ec9218761c64ad85224d5c05bbbcac8f2627dfad6",
+      "snapshots_sha256": "99a4ca903977f5b488a56a9b73b757f45bf42cbe52b8fc57d68de08104407fe5",
+      "finished_at": "2026-10-09T22:01:11.383131+00:00"
     }
   ]
 }

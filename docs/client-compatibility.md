@@ -627,14 +627,14 @@ Zotero 10.0.5 Linux x86-64; actual desktop profiles.
 
 | Scenario | SQLite | PostgreSQL |
 |---|---|---|
-| `baseline` | Not run | Passed (15 phases) |
-| `conflicts` | Not run | Passed (21 phases) |
-| `filing` | Not run | Passed (7 phases) |
-| `groups` | Not run | Passed (19 phases) |
-| `files` | Not run | Passed (20 phases) |
-| `relationships` | Not run | Passed (6 phases) |
+| `baseline` | Passed (15 phases) | Passed (15 phases) |
+| `conflicts` | Passed (21 phases) | Passed (21 phases) |
+| `filing` | Passed (7 phases) | Passed (7 phases) |
+| `groups` | Passed (19 phases) | Passed (19 phases) |
+| `files` | Passed (20 phases) | Passed (20 phases) |
+| `relationships` | Passed (6 phases) | Passed (6 phases) |
 | `recovery` | Passed (16 phases) | Passed (16 phases) |
-| `credentials` | Not run | Passed (12 phases) |
+| `credentials` | Passed (12 phases) | Passed (12 phases) |
 | `fulltext` | Passed (9 phases) | Passed (9 phases) |
 | `read-races` | Passed (24 phases) | Passed (24 phases) |
 | `settings` | Passed (11 phases) | Passed (11 phases) |
@@ -658,8 +658,9 @@ Zotero 10.0.5 Linux x86-64; actual desktop profiles.
 <!-- /desktop-matrix -->
 
 Results above are local executions with the pinned Linux x86-64 Zotero 10.0.5
-archive on 2026-10-02 and 2026-10-03. PostgreSQL uses the existing 18.4 container,
-with a fresh database per scenario. **Not run** means there is no successful result recorded
+archive on 2026-10-02, 2026-10-03 and 2026-10-09. PostgreSQL uses the existing
+18.4 container, with a fresh database per scenario. **Not run** means there is
+no successful result recorded
 for that combination; executable inventory entries and scheduled CI jobs do
 not count as passes. A successful scenario in a run that later failed is
 reported independently.
@@ -678,6 +679,8 @@ summary and were not rerun. Regenerate a matrix from retained reports with:
 uv run python -m tools.compatibility matrix --desktop-version 10.0.5 \
   --report .compatibility/desktop-10.0.5/acceptance.json \
   --report .compatibility/desktop-10.0.5-postgres/acceptance.json \
+  --report /tmp/altero-compat/sqlite-baseline/acceptance.json \
+  --report /tmp/altero-compat/sqlite-rest/acceptance.json \
   --output .compatibility/results.json --markdown .compatibility/matrix.md
 ```
 
@@ -687,9 +690,9 @@ or mismatched evidence. Interrupted phases retain their process exit status;
 completed phases identify their running binary. Summary hashes are evidence
 identifiers, not signatures or a certification of the whole desktop surface.
 
-The matrix records 47 successful database/scenario combinations and 594
-actual desktop phases. All 27 scenarios passed on PostgreSQL; 20 also passed
-on SQLite. The baseline includes all 40 schema types. The eight additions
+The matrix records 54 successful database/scenario combinations and 694
+actual desktop phases. All 27 scenarios passed on both PostgreSQL and SQLite.
+The baseline includes all 40 schema types. The eight additions
 described above passed 101 phases per database. The broad compatibility run
 passed 310 tests with no skips and six longer protocol replays deselected;
 those six replays passed separately with the pinned 10.0.5 sources. Subsequent

@@ -323,7 +323,7 @@ Local release checks on 2026-10-03 passed:
   API reads and writes also passed, and health reported `1.0.0b2`.
 
 The [recorded desktop matrix](docs/client-compatibility.md#successfully-tested-matrix)
-has 47 SQLite/PostgreSQL combinations and 594 phases with Zotero 10.0.5 on Linux.
+has 54 SQLite/PostgreSQL combinations and 694 phases with Zotero 10.0.5 on Linux.
 Release preparation rechecked retained report and snapshot hashes for 43
 combinations and 532 phases; four earlier PostgreSQL results survive only in the
 summary because their original temporary report is no longer available. Actual
