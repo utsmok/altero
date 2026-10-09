@@ -105,6 +105,22 @@ so the next session does not rediscover them:
   node here is 25.2.1, which trips an EBADENGINE warning from jsdom.
 - `npm --prefix web run build` emits into `src/altero/web/static/`, not
   `web/dist/`.
+- The compose stack also builds and runs here, against the Windows engine:
+  `WSLENV=ALTERO_PUBLISH_PORT ALTERO_PUBLISH_PORT=18080 '/mnt/c/Program Files/Docker/Docker/resources/bin/docker.exe' compose -f docker/compose.yaml -f docker/compose.build.yaml up -d --build`
+  `WSLENV` is what carries the variable across the WSL/Windows process
+  boundary; without it the port override never reaches compose.
+- Port 8000 is held by a Windows service (`svchost.exe`) on this machine,
+  so the stack publishes on 18080. The first launch failed with
+  "forbidden by its access permissions"; netstat plus tasklist named the
+  cause, and the netsh excluded-port ranges were not involved.
+- The compose port binding is `127.0.0.1` on the Windows host, so
+  WSL-side processes cannot reach the stack directly. Verify with
+  `/mnt/c/Windows/System32/curl.exe http://127.0.0.1:18080/health` or a
+  Windows-side browser. The WSL Zotero lab client keeps pointing at the
+  dev server on 8085.
+- Verified 2026-10-09: image built in about 40 seconds, the entrypoint
+  migrated a fresh database to head (`d7cd57abc8a4`), `/health` returned
+  200 with `1.0.0b2`, and `/app/` returned 200.
 
 ## Reproducing the run
 
