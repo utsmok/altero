@@ -17,7 +17,7 @@ For the manual two-client test procedure, see
 | Item uploads (client → server) | Works | A book and a child attachment created in the client appeared server-side with correct versions |
 | Attachment file upload | Works | `GET /users/1/items/{key}/file` returned a ZIP whose payload was byte-identical to the source file |
 | Streaming notifications | Works | The client held a WebSocket to `ws://…/stream` and received keepalives |
-| Suite | 242 tests pass | `uv run pytest` |
+| Suite | 2733 passed, 18 skipped | `uv run pytest` (31 minutes) |
 
 ## Client redirect mechanics
 
