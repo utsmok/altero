@@ -42,6 +42,13 @@ def prepare_profile(root: Path, server_url: str) -> Path:
         archive.write(BOOTSTRAP.with_name("desktop_reader.js"), "reader.js")
     preferences = {
         "app.update.enabled": False,
+        # The pin is sha256-verified; a background update applying itself to
+        # the installation mid-run changes the version under the running
+        # client and the next phase boots a different application.
+        "app.update.auto": False,
+        "app.update.staging.enabled": False,
+        "app.update.disabledForTesting": True,
+        "app.update.url": "",
         "extensions.update.enabled": False,
         "extensions.zoteroOpenOfficeIntegration.skipInstallation": True,
         "extensions.zoteroWinWordIntegration.skipInstallation": True,
