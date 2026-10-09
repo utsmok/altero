@@ -10,6 +10,20 @@ function watchAcceptanceDialogs(rules) {
         const uri = window.location.href;
         if (uri !== "chrome://zotero/content/merge.xhtml" && !uri.includes("commonDialog.xhtml")
             && !uri.includes("hardConfirmationDialog.xhtml")) return;
+        const text = (window.document.getElementById("infoBody") || {}).textContent || "";
+        // A machine with no Secret Service at all makes Zotero offer to save
+        // credentials unencrypted. Nobody is here to click: answer it the way
+        // the disposable profile already implies, and record that it happened.
+        // CI, which has no keyring either, never reaches this because its
+        // images lack the keystore module the prompt is behind.
+        if (text.includes("keyring") && text.includes("unencrypted")) {
+          const dialog = window.document.querySelector("dialog");
+          const button = dialog && dialog.getButton("accept");
+          if (!button) throw new Error("Keystore fallback dialog has no accept button");
+          trace.push({kind: "keystore-fallback", text});
+          button.click();
+          return;
+        }
         const rule = remaining.shift();
         try {
           if (!rule) throw new Error(`Unexpected dialog ${uri}`);

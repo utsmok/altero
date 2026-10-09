@@ -24,8 +24,11 @@ async function runAcceptance() {
     await Zotero.Users.setCurrentUserID(config.user_id ?? 1);
     await Zotero.Users.setCurrentUsername(config.username ?? "compatibility");
   }
-  if (config.key !== null) await Zotero.Sync.Data.Local.setAPIKey(config.key);
+  // The watcher must exist before the key is stored: on a machine with no
+  // Secret Service the keystore write can open the unencrypted-fallback
+  // prompt, and an unanswered prompt stalls the whole phase.
   const dialogs = watchAcceptanceDialogs(config.dialogs ?? []);
+  if (config.key !== null) await Zotero.Sync.Data.Local.setAPIKey(config.key);
   const selectedLibrary = () => config.group_id
     ? Zotero.Groups.get(config.group_id)?.libraryID : Zotero.Libraries.userLibraryID;
   let libraryID = selectedLibrary();
