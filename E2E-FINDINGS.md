@@ -82,6 +82,30 @@ user-library upload needs a user-scoped key.
 - Legacy `POST /keys`, `DELETE /removestoragefiles`, and
   `/retractions/list` are unimplemented; desktop sync did not need them.
 
+## Local development setup on this machine
+
+Notes for this workstation (WSL2 with Docker Desktop on the Windows side),
+so the next session does not rediscover them:
+
+- Docker is a Windows binary: `'/mnt/c/Program Files/Docker/Docker/resources/bin/docker.exe'`.
+  Quote the path, it contains spaces. Start Docker Desktop first; the engine
+  answers after about 10 seconds. The `altero-pg` container was created with
+  `--restart unless-stopped`, so it returns whenever the engine runs.
+- WSL2 networking is NAT mode, so a port published by a Windows-side
+  container is not on `localhost` inside WSL. Point tests at the Windows
+  host address instead:
+  `ALTERO_TEST_POSTGRES_URL=postgresql+asyncpg://altero:altero@$(ip route show default | cut -d' ' -f3):55432/altero`
+  That address changes across WSL restarts, so derive it per session rather
+  than saving it.
+- With that variable set, the Postgres-gated tests
+  (`tests/test_concurrency.py`, `tests/test_web_on_postgres.py`) run
+  locally; all 18 passed against a fresh `altero-pg`.
+- Web commands want Node 24; release validation used 24.19.0. It is
+  installed under nvm: `. ~/.nvm/nvm.sh && nvm use 24.19.0`. The default
+  node here is 25.2.1, which trips an EBADENGINE warning from jsdom.
+- `npm --prefix web run build` emits into `src/altero/web/static/`, not
+  `web/dist/`.
+
 ## Reproducing the run
 
 A helper lives at `tools/dev-e2e.sh`: it boots a scratch server, provisions
