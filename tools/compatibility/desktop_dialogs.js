@@ -2,6 +2,7 @@
 function watchAcceptanceDialogs(rules) {
   const remaining = [...rules];
   const trace = [];
+  const environment = [];
   const errors = [];
   const watcher = {
     observe(window, topic) {
@@ -15,12 +16,13 @@ function watchAcceptanceDialogs(rules) {
         // credentials unencrypted. Nobody is here to click: answer it the way
         // the disposable profile already implies, and record that it happened.
         // CI, which has no keyring either, never reaches this because its
-        // images lack the keystore module the prompt is behind.
+        // images lack the keystore module the prompt is behind. The answer is
+        // reported apart from the dialog trace, which scenarios count.
         if (text.includes("keyring") && text.includes("unencrypted")) {
           const dialog = window.document.querySelector("dialog");
           const button = dialog && dialog.getButton("accept");
           if (!button) throw new Error("Keystore fallback dialog has no accept button");
-          trace.push({kind: "keystore-fallback", text});
+          environment.push({kind: "keystore-fallback", text});
           button.click();
           return;
         }
@@ -78,6 +80,7 @@ function watchAcceptanceDialogs(rules) {
   Services.ww.registerNotification(watcher);
   return {
     trace,
+    environment,
     finish() {
       Services.ww.unregisterNotification(watcher);
       if (errors.length) throw new Error(errors.join("; "));

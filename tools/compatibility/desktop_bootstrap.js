@@ -303,6 +303,7 @@ async function runAcceptance() {
   await IOUtils.writeUTF8(config.result, JSON.stringify({ version: Zotero.version,
     items: snapshot, files, collections: collections.map(value => value.toJSON()),
     searches: searches.map(value => value.toJSON()), unsynced, groups, dialogs: dialogs.trace,
+    keystore: dialogs.environment,
     storage_states, file_entries, fulltext, settings, tag_colors, streaming, reader, user_id: Zotero.Users.getCurrentUserID() }));
   Services.startup.quit(Services.startup.eForceQuit);
 }
