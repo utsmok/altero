@@ -127,3 +127,15 @@ so the next session does not rediscover them:
 A helper lives at `tools/dev-e2e.sh`: it boots a scratch server, provisions
 a user and keys, and can launch the lab client against it. The client used
 was Zotero 10.0.6 Linux x64 with the two prefs above set in its profile.
+
+## Machine notes for desktop acceptance runs (WSL2)
+
+- Use the WSLg display (`DISPLAY=:0`), not Xvfb: `/tmp/.X11-unix` is a
+  read-only WSLg mount here, so Xvfb cannot create its socket. For fully
+  headless runs, start `Xvfb :99 -listen tcp -nolisten unix` (TCP-only
+  survives the read-only mount) and run the client with
+  `DISPLAY=localhost:99.0`; no windows appear on the desktop.
+- Keep the pinned client install read-only (`chmod -R a-w`) or Zotero
+  self-updates mid-run and invalidates the pinned-version claim.
+- Kill leftover `zotero-bin` processes before reruns; Zotero forwards
+  startup to an existing instance otherwise.
