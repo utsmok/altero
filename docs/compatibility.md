@@ -543,6 +543,17 @@ the apps send `multipart/form-data`: those fields, then the file in a part named
 itself otherwise. Given the desktop shape, the apps fail twice over: both
 require `params`, and the multipart envelope arrives as the file.
 
+**The partial upload is not served.** Upstream also takes a binary diff in
+place of a whole file: `PATCH <prefix>/items/<key>/file` naming an `algorithm`
+of `xdelta`, `vcdiff` or `bsdiff`, with the difference between the stored file
+and the new one as the body, applied server side before registration. altero
+serves no such route and answers 405 — an answer the API documentation
+anticipates, naming 405 as the moment a diff client falls back to the full
+upload. The desktop application contains no code for any of the three formats,
+so the client altero exists to serve never sends the request; the route
+upstream keeps is there for third-party API users, and a self-hosted server
+whose storage is a local directory is not the audience with bandwidth to save.
+
 Uploaded bytes are checked against the declared MD5 and length before being
 stored, and `If-Match` or `If-None-Match` is required, so a client working from
 stale information cannot overwrite a newer file.

@@ -110,6 +110,22 @@ class TestAuthorization:
         assert response.status_code == 412
         assert "Last-Modified-Version" not in response.headers
 
+    async def test_partial_upload_method_is_not_served(
+        self, client: httpx.AsyncClient, attachment: str
+    ) -> None:
+        """Upstream's binary-diff upload has no route here.
+
+        The file-upload documentation names 405 as the point where a diff
+        client falls back to the full upload, and the desktop application's
+        own code contains none of the three diff formats.
+        """
+        response = await client.patch(
+            f"/users/1/items/{attachment}/file?algorithm=xdelta&upload=k",
+            headers=AUTH | {"If-Match": MD5},
+            content=b"diff",
+        )
+        assert response.status_code == 405
+
     async def test_authorization_returns_upload_instructions(
         self, client: httpx.AsyncClient, attachment: str
     ) -> None:
