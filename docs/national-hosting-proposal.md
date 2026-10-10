@@ -23,10 +23,10 @@ altero already implements it.
 A sync server is the service that copies a reference library between a
 researcher's devices and their group's shared library. Zotero is a widely used,
 free, open source reference manager. Its desktop application is open source and
-runs everywhere. By default it synchronizes with a service at zotero.org in the
-United States.
+runs on Windows, macOS and Linux. By default it synchronizes with a service
+at zotero.org in the United States.
 
-altero is an open source server that speaks the same synchronization protocol.
+altero is an open source server that implements the same synchronization protocol.
 An unmodified Zotero Desktop application synchronizes with it, including
 attachments, notes, annotations, full-text search and group libraries. One
 server can serve all institutions, because users sign in through SURFconext and
@@ -45,15 +45,16 @@ altero already supports that sign-in method.
   quotas, pricing and terms. A group library no longer draws on the personal
   quota of whichever member owns the group.
 - **The market is churning anyway.** The Dutch university RefWorks licensees
-  below have all left the product, institutional Mendeley licenses ended at
-  several universities in 2024, Twente has dropped two reference managers in
-  two years, and Twente's EndNote agreement ended in December 2025. Every one
-  of those migrations is already being paid for; this proposal changes where
-  they land, not whether they happen.
+  below have all left the product. Institutional Mendeley licenses ended
+  at several universities in 2024, and Twente has dropped two reference
+  managers in two years. Twente's EndNote agreement ended in December 2025.
+  Every one
+  of those migrations is already being paid for. This proposal changes
+  where they land, not whether they happen.
 - **Open source.** The server is AGPL-3.0, the client is open source, and
   export is a core feature, so users and institutions are never locked
-  in. Institutions can fix or extend the software instead of filing wishes
-  with a vendor.
+  in. Institutions can fix or extend the software instead of requesting
+  features from a vendor.
 - **Cost.** There are no per-seat licenses. The cost is a fraction of one FTE
   of staff time and one small server environment, with infrastructure between
   10,000 and 20,000 euro per year at national scale.
@@ -64,12 +65,12 @@ altero already supports that sign-in method.
 
 ### The devil's advocate case
 
-These are the honest arguments against, with a response where one exists and
-left standing where it does not.
+The list below gives the honest arguments against, with a response where one
+exists. Where no response exists, the argument is left standing.
 
-1. **zotero.org already does this job.** It is free below 300 MB, run by a
-   nonprofit, and its unlimited institution subscription is demonstrably
-   affordable, Twente's costs about 5,000 euro per year. If an institution
+1. **zotero.org already does this job.** It is free below 300 MB and run by
+   a nonprofit, and its unlimited institution subscription is affordable.
+   Twente's costs about 5,000 euro per year. If an institution
    does not care where its data lives or who can suspend accounts, zotero.org
    is the cheaper and less risky choice, and this proposal duplicates it.
    *Response:* the argument rests on residency, group libraries with files,
@@ -78,29 +79,29 @@ left standing where it does not.
 2. **The configuration surface is unsupported.** The Zotero project does not
    support third-party sync servers. The two preferences that redirect a
    desktop client work today, but they are not a documented integration
-   surface, and a desktop release could change their behavior. The streaming
-   preference has a real trap: if it is not set, the client keeps talking to
+   surface. A desktop release could change their behavior. The streaming
+   preference has a real trap. If it is not set, the client keeps talking to
    zotero.org's streaming endpoint and may send the altero API key there.
    *Response:* the compatibility matrix pins desktop releases and runs
-   acceptance scenarios with real client profiles before any deployment, and
-   the SURF-distributed client package described below would set both
-   preferences so the trap never fires, reducing the risk to small. It does
-   not reach zero, and this is
-   the strongest technical argument against the project.
+   acceptance scenarios with real client profiles before any deployment.
+   The client package SURF distributes, described below, would set both
+   preferences so the trap never fires, reducing the risk to small. The
+   risk does not reach zero, and the remaining risk is the strongest
+   technical argument against the project.
 3. **Official mobile apps cannot connect at all.** The iOS and Android
    applications compile the zotero.org hosts into the binary and have no
    setting for another server, so connecting them means patched builds that
    nobody official publishes. Until such builds exist, mobile users are
-   second-class on the national server. *This objection stands today.*
+   second-class on the national server. *The objection stands today.*
 4. **Key-person and project risk.** altero is a young project at release
    1.0.0-beta.2 with a small team, and a national service would make it
-   load-bearing infrastructure. *Response:* the AGPL license means SURF can
+   critical infrastructure. *Response:* the AGPL license means SURF can
    take over the code without permission, and operating it is estimated at a
    fraction of one FTE, but the governance question is real and is SURF's to
    answer, not the software's.
 5. **Migration is not free.** A desktop profile that has synced with
    zotero.org carries its old numeric account id, and the server refuses to
-   hand it a key for a different account; an account with that id must be
+   hand it a key for a different account. An account with that id must be
    created on the server, and attachments move off institutional WebDAV only
    through a deliberate full re-upload step. Users who keep
    both a zotero.org account and a new one risk split libraries. *Response:*
@@ -108,7 +109,7 @@ left standing where it does not.
    institution by institution, not all at once.
 6. **Nothing has run at national scale.** The desktop evidence covers
    594 acceptance phases across 47 scenario and database combinations, on
-   pilot-sized libraries; no load test
+   pilot-sized libraries. No load test
    has exercised 25,000 or 100,000 concurrent users, and the sizing in this
    document is arithmetic, not measurement. *Response:* the pilot phase
    exists to replace arithmetic with evidence before any national
@@ -116,7 +117,7 @@ left standing where it does not.
 7. **Governance is the hard part.** A sector service needs retention policy,
    an uptime commitment, incident response and multi-year funding. Those
    decisions, not the software, determine whether this service earns trust,
-   and open source does not write policy. *This objection stands, and it is
+   and open source does not write policy. *The objection stands, and it is
    the part SURF actually signs up for.*
 
 ### How the alternatives compare
@@ -137,10 +138,11 @@ supporting Zotero itself, and the pilot budget should include a contribution
 to the Zotero project. Also, altero exists because a self-hosted option was
 missing, not because zotero.org serves users badly.
 
-EndNote and Mendeley show the two other models. EndNote is licensed per seat:
-one public university's site license program charges $110 per seat per year,
-and a campus-wide agreement is quoted individually by Clarivate. Mendeley
-shows what a closed institutional arrangement can cost later. Institutional
+EndNote and Mendeley show the two other models. EndNote is licensed per
+seat. One public university's site license program charges $110 per seat per
+year, and a campus-wide agreement is quoted individually by Clarivate.
+Mendeley shows what a closed institutional arrangement can cost later.
+Institutional
 Mendeley licenses ended at several universities in 2024,
 including the University of Twente's, which dropped users there to 2 GB of
 personal storage and 100 MB of shared storage. A service built on open source
@@ -149,8 +151,8 @@ and can always move the data.
 
 ### The wider field
 
-The same comparison across the rest of the market. Prices are quoted
-individually where no public figure exists.
+The table below makes the same comparison across the rest of the market.
+Prices are quoted individually where no public figure exists.
 
 | Tool | Institutional price | Data location | Openness | Autonomy and exit |
 |---|---|---|---|---|
@@ -164,9 +166,10 @@ individually where no public figure exists.
 
 ### Functionality overview
 
-The same products on the two sides that matter for this decision: what the
-user runs, and what the institution runs. The client differences are mostly a
-matter of taste. The hosting differences are more important.
+The tables below compare the same products on the two sides that matter for
+this decision: what the user runs, and what the institution runs. The client
+differences are mostly a matter of taste. The hosting differences are more
+important.
 
 What the user runs:
 
@@ -201,10 +204,11 @@ What the institution runs:
 
 ### Known use in Dutch institutions
 
-Where each product is already used in the Netherlands, and who to ask for
-first-hand experience and prices. The Dutch university RefWorks licensees below
-have all left the product, Twente has now dropped two reference managers in
-two years, and the replacements are Zotero, Mendeley or Clarivate products.
+The table below shows where each product is already used in the Netherlands,
+and who to ask for first-hand experience and prices. The Dutch university
+RefWorks licensees below have all left the product, and Twente has now
+dropped two reference managers in two years. The replacements are Zotero,
+Mendeley or Clarivate products.
 
 | Product | Known use in the Netherlands | Where to get more detail |
 |---|---|---|
@@ -226,7 +230,7 @@ plugins and its catalog of citation styles form one ecosystem, and only
 zotero.org and altero serve that client. Choosing another manager means
 choosing a different client and migrating every library. Second, product
 turnover is the autonomy argument in practice. RefWorks is being retired,
-institutional Mendeley licenses ended at several universities in 2024, and
+and institutional Mendeley licenses ended at several universities in 2024.
 Sciwheel users were moved to a renamed product. A hosted service always
 carries the risk that the product around the data changes or disappears.
 Self-hosting the server does not prevent that, but it keeps the data, the
@@ -234,9 +238,9 @@ client and the exit path under the institutions' control.
 
 For completeness, Zotero's own dataserver
 is open source, so a technical team can run it. Nobody maintains self-hosting
-as a product, though. The project documents no supported installation, the
-community Docker and LXC projects are one-person efforts that have stalled,
-and a national service on the dataserver would mean operating a legacy PHP and
+as a product, though. The project documents no supported installation, and
+the community Docker and LXC projects are one-person efforts that have
+stalled. A national service on the dataserver would mean operating a legacy
 MySQL stack with a search cluster, no web interface, no account administration
 and no SURFconext integration. altero is the maintained product for the
 operating model this proposal describes.
@@ -244,8 +248,9 @@ operating model this proposal describes.
 ## What it takes to set up
 
 The deployment is small: one application, one PostgreSQL database
-and one directory of attachment files, with a TLS endpoint in front. There is
-no search cluster, message queue or object store to run. The published Docker
+and one directory of attachment files, with a TLS endpoint in front for
+encrypted HTTPS access. There is no search cluster, message queue or object
+store to run. The published Docker
 image needs no build, so the setup is:
 
 1. Order a small virtual machine or container platform at SURF, mount an
@@ -255,8 +260,8 @@ image needs no build, so the setup is:
 3. Register the service in the SURFconext SP Dashboard test environment and add
    the SURFconext sign-in provider in the administration screen. The whole
    desktop sign-in flow can be tested before production.
-4. Test the backup and restore procedure, because that is what a pilot
-   institution will ask about first.
+4. Test the backup and restore procedure, because a pilot institution will
+   ask about it first.
 
 The engineering work is three to five working days. The calendar time is
 dominated by the SURFconext registration and the agreements around it, which
@@ -278,21 +283,22 @@ Onboarding an institution is mostly automatic. SURF connects its identity
 provider, and users sign in and get an account on first use, once automatic
 account creation is turned on for the provider. When someone leaves an
 institution, the server notices on their next sign-in, if the provider is
-configured to require an institutional claim, and suspends the account, which
-also blocks the desktop client, while keeping the data for reinstatement or
-removal under the retention policy. Someone who never signs in again is not
-caught automatically; an administrator handles that case instead.
+configured to require an institutional claim, and suspends the account. The
+suspension also blocks the desktop client. The data is kept for
+reinstatement or removal under the retention policy. Someone who never
+signs in again is not caught automatically. An administrator handles that
+case instead.
 
 ## Connecting Zotero clients
 
-Each user connects an unmodified Zotero Desktop installation once. No build,
-no fork and no client patch is needed for the pilot:
+Each user connects an unmodified Zotero Desktop installation once. The
+pilot needs no build, no fork and no client patch:
 
 1. In **Settings, Advanced, Config Editor**, set two preferences:
    `extensions.zotero.api.url = https://<server>/` (the trailing slash
    matters) and `extensions.zotero.streaming.url = wss://<server>/stream`,
-   then restart Zotero. Both are needed, unless streaming is disabled
-   outright: the API preference does not redirect the streaming connection,
+   then restart Zotero. Both are needed unless streaming is disabled
+   outright. The API preference does not redirect the streaming connection,
    and a client that keeps the built-in zotero.org streaming endpoint may
    send the altero API key to zotero.org, which rejects it but may log it. A
    distributed package that sets both preferences,
@@ -302,25 +308,26 @@ no fork and no client patch is needed for the pilot:
    through their own institution via SURFconext and approves the
    client. Approval always asks for a fresh proof of identity, so an
    institutional sign-in gets a "confirm with provider" step rather than
-   riding an existing browser session. The client receives an API key that
+   reusing an existing browser session. The client receives an API key that
    stays valid until it is revoked.
 
 A desktop profile that has synced with zotero.org carries its old numeric
-account id and will not silently link to a different account; linking is
-refused and the message names the id, and an administrator then creates the
-account under that id with one command in the server shell, which is also the
-documented path for moving a personal library from zotero.org. Attachment
-files can stay on an
-institutional WebDAV server or be moved into the national server; group
-libraries always carry their files through the server. The official iOS and
-Android applications compile the zotero.org hosts into the binary and cannot
-be redirected by settings, so they need a patched build, as discussed below;
-the pilot is desktop-first.
+account id and will not silently link to a different account. Linking is
+refused and the message names the id. An administrator then creates the
+account under that id with one command in the server shell, which is also
+the documented path for moving a personal library from zotero.org.
+Attachment files can stay on an institutional WebDAV server, which stores
+files using the WebDAV web standard, or be moved into the national server.
+Group libraries always carry their files through the server. The official
+iOS and Android applications compile the zotero.org hosts into the binary
+and cannot be redirected by settings, so they need a patched build, as
+discussed below. The pilot is desktop-first.
 
 ### Distributing a pre-configured client
 
 The manual steps above are one-time, but a sector service should not ask
-100,000 people to edit a config editor. Two ways to remove them:
+100,000 people to edit a config editor. The table below compares the two
+ways to remove them:
 
 | | Companion extension | Patched full build |
 |---|---|---|
@@ -332,24 +339,25 @@ The manual steps above are one-time, but a sector service should not ask
 | Exit path | Uninstalling the plugin restores stock behavior | Users switch back to official downloads |
 
 The companion extension is the recommended first step. Zotero loads
-bootstrap plugins — the compatibility harness itself installs one in every
-test profile — and a plugin of a few hundred lines can set both
-preferences as the account-signing flow expects, re-assert them after client
-updates, and stop on demand. "Zotero from SURF" can then mean the official
+bootstrap plugins, which are add-on programs that start with the client. The
+compatibility harness itself installs one in every test profile. A plugin of
+a few hundred lines can set both preferences as the sign-in flow expects,
+re-assert them after client updates, and stop on demand. "Zotero from SURF"
+can then mean the official
 installer plus one plugin file, distributed from a SURF download page or
 pushed by institutional IT the way managed browser extensions already are.
 
-The patched full build is the heavier instrument: SURF's build system checks
+The patched full build is the heavier option. SURF's build system checks
 out the official client repository at a pinned release tag, applies a patch
 that defaults both preferences to the national server, and publishes signed
-installers. It gives users a genuinely out-of-the-box client, and the same
-pipeline applied to the mobile repositories is the only route to official
-mobile apps on the national server. Its costs are operational, not technical:
-rebuilding on every client security release, running an update channel
-because a rebadged build cannot consume Zotero's official updates, and
-labeling the distribution clearly so the Zotero name and trademarks are
-respected. The pilot should run on the extension; the case for full builds,
-desktop first and mobile second, is a decision the pilot evidence informs.
+installers. It gives users an out-of-the-box client, and the same pipeline
+applied to the mobile repositories is the only route to official mobile
+apps on the national server. Its costs are operational, not technical. SURF
+must rebuild on every client security release, run an update channel
+because a renamed build cannot use Zotero's official updates, and label the
+distribution clearly so the Zotero name and trademarks are respected. The
+pilot should run on the extension. The case for full builds, desktop first
+and mobile second, is a decision the pilot evidence should inform.
 
 ## What it needs
 
@@ -362,9 +370,10 @@ student counts include many support staff and researchers who hardly use
 reference management. The scenarios below therefore assume 50 MB of attachments per
 active user on average, treated as an upper limit for the first estimate, and
 adjusted from pilot usage data once real numbers exist. Deduplication
-reinforces the estimate: files are stored once per digest, so the PDF a
-supervisor and ten PhD students all hold is on disk once. The database holds
-metadata only and stays small even compared with the modest attachment store.
+reinforces the estimate. The server stores each file once per digest, which
+is a checksum of the file's content. The PDF a supervisor and ten PhD
+students all hold is on disk once. The database holds metadata only and
+stays small even compared with the modest attachment store.
 
 | Scenario | Active users | Attachments | Database | Application | PostgreSQL |
 |---|---|---|---|---|---|
@@ -377,8 +386,8 @@ of memory when idle, and attachments are stored once per file digest so
 shared PDFs are not duplicated. The database only holds metadata. The
 attachment directory must stay on a block-backed filesystem or an NFS mount,
 with backups going to object storage, because object-storage filesystem
-mounts implement rename as copy-then-delete and the server will not fall
-back to copying.
+mounts implement rename as a copy followed by a delete, and the server will
+not fall back to copying.
 
 ## What it costs
 
@@ -386,7 +395,7 @@ Indicative only. Infrastructure is priced at market rates: small virtual
 machines plus bulk attachment storage at 3 to 10 euro per terabyte per month.
 At 50 MB per active user, the storage cost is negligible and the virtual
 machines dominate the infrastructure cost. Staff effort is stated as
-approximate FTE and left unpriced: SURF's own internal rates determine that
+approximate FTE and left unpriced. SURF's own internal rates determine that
 line.
 
 | Scenario | Infrastructure per year | Staff (approximate FTE) |
@@ -399,15 +408,15 @@ The comparison comes from the status quo. The University of Twente, the
 originator of this proposal, already pays about 5,000 euro per year for a
 Zotero institution subscription with unlimited storage, covering roughly
 5,000 FTE and 10,000 students. Scaled by
-addressable population to the whole sector, about 75 times larger, that is
-roughly 350,000 to 400,000 euro per year in total. A shared national server
+addressable population to the whole sector, about 75 times larger, the total
+is roughly 350,000 to 400,000 euro per year. A shared national server
 at 100,000 active users needs 10,000 to 20,000 euro per year of
 infrastructure, roughly 200 to 400 euro per institution per year across the
 sector's roughly fifty institutions, plus 0.25 to 0.40 FTE of staff time. It
-adds what the subscription does not offer: the data stays in the country and
-sign-in runs through SURFconext. The comparison holds whatever internal rate
-SURF applies to that staff line, because the effort is a fraction of one
-person's time. The pilot is cheap in absolute terms and buys the evidence
+adds what the subscription does not offer. The data stays in the country,
+and sign-in runs through SURFconext. The comparison holds whatever internal
+rate SURF applies to that staff line, because the effort is a fraction of one
+person's time. The pilot is cheap in absolute terms and produces the evidence
 needed for the national decision.
 
 ## Maturity and risks
@@ -422,11 +431,11 @@ implemented. The warnings relevant to this proposal:
   until the pilot report is positive.
 - **Mobile.** The official Zotero iOS and Android applications have the server
   address compiled in and cannot point at another server. Desktop is the
-  supported platform; mobile needs a custom build, which the project supports
+  supported platform. Mobile needs a custom build, which the project supports
   but does not distribute.
 - **Maintainer capacity.** altero currently depends on a small team of
-  maintainers. The license and public source remove the vendor-risk part of
-  that, and SURF operating the service is the kind of deployment that widens
+  maintainers. The license and public source remove the vendor part of that
+  risk, and SURF operating the service is the kind of deployment that widens
   the contributor base.
 - **Agreements.** SURF acts as processor, institutions as controllers, so a
   data processing agreement and a retention policy are part of the pilot
