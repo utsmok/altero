@@ -1,0 +1,83 @@
+# Build a Zotero Desktop client whose default sync preferences point at the
+# SURF national server instead of zotero.org. See tools/surf-client-build/README.md
+# for dispatch instructions, verification steps and caveats.
+name: SURF client build
+
+on:
+  workflow_dispatch:
+    inputs:
+      zotero_ref:
+        description: 'zotero/zotero ref to build from (pinned release tag; newest verified: 10.0.5)'
+        required: true
+        default: '10.0.5'
+        type: string
+      server_url:
+        description: 'Sync server base URL, trailing slash. DEFAULT IS A PRE-PRODUCTION PLACEHOLDER. Streaming URL is derived as wss://<host>/stream.'
+        required: true
+        default: 'https://zotero.surf.nl/'
+        type: string
+
+permissions: {}
+
+jobs:
+  build-linux-x64:
+    name: Zotero Linux x64 pointing at ${{ inputs.server_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      SERVER_URL: ${{ inputs.server_url }}
+    steps:
+      # altero checkout provides tools/surf-client-build/patch_prefs.py.
+      - name: Check out altero (patch tooling)
+        uses: actions/checkout@v4
+        with:
+          path: altero
+
+      - name: Check out zotero/zotero at ${{ inputs.zotero_ref }}
+        uses: actions/checkout@v4
+        with:
+          repository: zotero/zotero
+          ref: ${{ inputs.zotero_ref }}
+          # app/build.sh fails on LFS files that were not fetched
+          # (check_lfs_file) and needs the translators/styles/reader modules.
+          submodules: recursive
+          lfs: true
+          path: zotero
+
+      - name: Set up Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install build packages
+        run: sudo apt-get update && sudo apt-get install -y zip zstd
+
+      - name: Patch default sync preferences
+        run: python3 altero/tools/surf-client-build/patch_prefs.py zotero/defaults/preferences/zotero.js "$SERVER_URL"
+
+      - name: Build client JS and styles
+        working-directory: zotero
+        run: |
+          npm install
+          npm run build
+
+      # app/build.sh fetches the Gecko runtime (Firefox ESR 140.15.0esr at tag
+      # 10.0.5) itself via scripts/fetch_xulrunner when app/xulrunner is absent.
+      - name: Package Linux x64 build
+        working-directory: zotero
+        run: app/build.sh -p l -a x64
+
+      - name: Summarize artifacts
+        run: |
+          ls -l zotero/app/dist/
+          sha256sum zotero/app/dist/*
+          cp zotero/defaults/preferences/zotero.js zotero-patched-prefs.js
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zotero-surf-linux-x64-${{ inputs.zotero_ref }}
+          if-no-files-found: error
+          path: |
+            zotero/app/dist/Zotero-*_linux-x86_64.tar.xz
+            zotero-patched-prefs.js
