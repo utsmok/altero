@@ -82,6 +82,42 @@ personal storage and 100 MB of shared storage. A service built on open source
 software has no equivalent risk, because the institutions hold the source code
 and can always move the data.
 
+### The wider field
+
+The same comparison across the rest of the market. Prices are quoted
+individually where no public figure exists.
+
+| Tool | Institutional price | Data location | Openness | Autonomy and exit |
+|---|---|---|---|---|
+| RefWorks (Clarivate) | Campus subscription, quote-based | United States | Closed | Being retired; Clarivate purges accounts 120 days after a license ends, and steers users to EndNote Fusion |
+| EndNote and EndNote Fusion (Clarivate) | About $110 per seat per year in one public program, campus quotes otherwise | United States | Closed | Proprietary library format; Fusion adds sign-on, analytics and AI under Clarivate's cloud |
+| Citavi (Lumivero) | Campus license, quote-based | Provider cloud on Microsoft Azure | Closed | At least one German university forbids storing personal or confidential project data in the Citavi cloud |
+| Paperpile | From roughly $50 per user per year with the academic discount, site licenses quoted | The user's own Google Drive | Closed | Requires Google accounts; export through open formats |
+| Lean Library Workspace, formerly Sciwheel | Institutional, quoted | United States | Closed | Dropped or migrated by several universities after the product changed hands and name |
+| ReadCube and Papers (Digital Science) | Individual and institutional | United States | Closed | Niche in the Netherlands |
+| JabRef | Free | No central service | Open source | BibTeX-centered, no managed group synchronization, so it solves a different problem |
+
+None of this changes the recommendation, for two reasons. First,
+interoperability: Zotero Desktop, its browser connector, its word processor
+plugins and its catalog of citation styles form one ecosystem, and only
+zotero.org and altero serve that client. Choosing another manager means
+choosing a different client and migrating every library. Second, product churn
+is the autonomy argument in practice: RefWorks is being retired, the Mendeley
+institutional edition ended in 2024, and Sciwheel users were moved to a
+renamed product. A hosted service always carries the risk that the product
+around the data changes or disappears. Self-hosting the server does not
+prevent that, but it keeps the data, the client and the exit path under the
+institutions' control.
+
+One further option deserves mention for completeness: Zotero's own dataserver
+is open source, so a technical team can run it. Nobody maintains self-hosting
+as a product, though. The project documents no supported installation, the
+community Docker and LXC projects are one-person efforts that have stalled,
+and a national service on the dataserver would mean operating a legacy PHP and
+MySQL stack with a search cluster, no web interface, no account administration
+and no SURFconext integration. altero is the maintained product aimed at
+exactly the operating model this proposal describes.
+
 ## What it takes to set up
 
 The deployment is deliberately small: one application, one PostgreSQL database
@@ -217,5 +253,15 @@ implemented. The warnings that matter for this proposal:
 - [EndNote site license order form, University of Hawaiʻi](https://www.hawaii.edu/sitelic/endnote/endnoteform.pdf),
   the source of the $110 per seat per year figure
 - [Mendeley institutional license discontinuation, University of Twente](https://www.utwente.nl/en/lisa-library-news/2024/12/29937/discontinuation-mendeley-institutional-license)
+- [RefWorks access discontinuing, University of Georgia](https://www.libs.uga.edu/refworks-discontinued),
+  including the 120-day account purge after license end
+- [EndNote Fusion](https://endnote.com/fusion/), Clarivate's successor product
+- [Paperpile pricing](https://paperpile.com/pricing/) and
+  [site licenses](https://paperpile.com/sites/)
+- [Citavi cloud privacy notice, HTWK Leipzig](https://bibliothek.htwk-leipzig.de/en/recherche/literatur-verwalten/citavi-cloud),
+  restricting personal and confidential data in the Citavi cloud
+- [Sciwheel is becoming Lean Library Workspace](https://leanlibrary.com/sciwheel-is-becoming-lean-library-workspace/)
+- [Self-hosting documentation request, zotero/dataserver issue 105](https://github.com/zotero/dataserver/issues/105),
+  the state of dataserver self-hosting
 - [Zotero synchronization overview](https://www.zotero.org/support/sync),
   the basis for the WebDAV and group-library comparison
