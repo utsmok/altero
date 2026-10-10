@@ -97,6 +97,43 @@ individually where no public figure exists.
 | ReadCube and Papers (Digital Science) | Individual and institutional | United States | Closed | Niche in the Netherlands |
 | JabRef | Free | No central service | Open source | BibTeX-centered, no managed group synchronization, so it solves a different problem |
 
+### Functionality overview
+
+The same products on the two sides that matter for this decision: what the
+user runs, and what the institution runs. The client differences are mostly a
+matter of taste. The hosting differences are the substance.
+
+What the user runs:
+
+| Product | Desktop app | Browser connector | Word processor plugins | PDF reader with annotations | Mobile apps | Open source |
+|---|---|---|---|---|---|---|
+| Zotero Desktop | Windows, macOS, Linux | Yes, all major browsers | Word, LibreOffice, Google Docs | Yes | iOS and Android | Yes |
+| EndNote 2025 and Fusion | Windows, macOS | Yes | Word; Google Docs through EndNote Web | Yes | None current | No |
+| Mendeley Reference Manager | Windows, macOS, Linux | Yes | Word | Yes | None; the old apps were retired in 2021 | No |
+| Citavi | Windows, plus a web app | Yes, the Citavi Picker | Word | Yes | None; web only | No |
+| Paperpile | None, it is a web app | Yes | Word and Google Docs | Yes | iOS and Android | No |
+| Lean Library Workspace | None, web app | Yes | Word | Yes | None | No |
+| ReadCube and Papers | Windows, macOS | Yes | Word | Yes | iOS and Android | No |
+| JabRef | Windows, macOS, Linux (Java) | Yes, BibTeX capture | LibreOffice native, Word via add-ons | Basic | None | Yes, MIT |
+| RefWorks, being retired | None, web app | Yes | Word, Write-n-Cite | Basic | None | No |
+
+What the institution runs:
+
+| Product | Hosting options | Group libraries | Institutional sign-in | Account administration | API for other tools |
+|---|---|---|---|---|---|
+| zotero.org | Managed only, nonprofit, United States | Yes, files draw on the owner's quota | No | None, self-service accounts | Yes, Web API v3 |
+| altero, the proposed national server | Managed by SURF, or self-hosted | Yes, full group libraries with shared storage | Yes, SURFconext through OIDC or SAML | Yes: just-in-time accounts, claim-based suspension, retention settings | Yes, Web API v3 plus an OAuth 2.0 server |
+| Zotero dataserver, self-hosted | Self-hosted only, no supported installation | Yes | No | None, no admin interface | Yes, Web API v3 |
+| Zotero with WebDAV | Any WebDAV server, attachment files only | No, personal library files only | No | No | No, metadata stays on zotero.org |
+| EndNote and Fusion | Managed only, Clarivate | Yes, shared groups and projects | Fusion: yes | Fusion: admin console with analytics | No |
+| Mendeley | Managed only, Elsevier | Limited on the free tier since the institutional edition ended | No | None | Limited, closed program |
+| Citavi | Lumivero cloud, or Citavi DB Server on a local Windows server for shared projects | Shared projects, yes | No | License management only | No |
+| Paperpile | Managed only, on Google infrastructure | Yes, shared libraries | Through Google accounts | Site license console | Limited, export through Google Drive |
+| Lean Library Workspace | Managed only | Yes, shared projects | Not verified | Not verified | No |
+| ReadCube and Papers | Managed only | Shared collections | Not verified | Not verified | No |
+| JabRef | No server; share files or a Git repository | No | No | No | No |
+| RefWorks | Managed only, being retired | Yes | Yes, institutional login | Institutional admin console | No |
+
 ### Known use in Dutch institutions
 
 Where each product already has a Dutch footprint, and who to ask for
@@ -288,7 +325,9 @@ implemented. The warnings that matter for this proposal:
   including the 120-day account purge after license end
 - [EndNote Fusion](https://endnote.com/fusion/), Clarivate's successor product
 - [Paperpile pricing](https://paperpile.com/pricing/) and
-  [site licenses](https://paperpile.com/sites/)
+  [site licenses](https://paperpile.com/sites/); its
+  [iOS and Android apps](https://paperpile.com/ios-and-android/) are official
+- [Mendeley mobile app retirement](https://blog.mendeley.com/2021/03/11/mendeley-refocusing-announcement-mobile-app-retirement/)
 - [Citavi cloud privacy notice, HTWK Leipzig](https://bibliothek.htwk-leipzig.de/en/recherche/literatur-verwalten/citavi-cloud),
   restricting personal and confidential data in the Citavi cloud
 - [Sciwheel is becoming Lean Library Workspace](https://leanlibrary.com/sciwheel-is-becoming-lean-library-workspace/)
