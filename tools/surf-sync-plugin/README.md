@@ -55,9 +55,28 @@ survive official Zotero client updates.
    is not needed).
 2. In Zotero: Tools → Plugins → gear menu → *Install Plugin From File*, then
    pick `surf-sync.xpi`, and restart Zotero when prompted.
-3. Institutional IT can instead drop the XPI into the profile's `extensions/`
-   directory as `surf-sync@altero.invalid.xpi` (the compatibility harness
-   installs it that way for acceptance runs).
+
+### Bundling (no user step)
+
+To ship Zotero with the plugin already active, drop the XPI into the
+install directory before (or after) users launch it:
+
+    <install dir>/distribution/extensions/surf-sync@altero.invalid.xpi
+
+On Linux x64 that is `zotero_linux-x86_64/distribution/extensions/`. Verified
+against Zotero 10.0.5 (2026-10-10): at the next launch Zotero imports the file
+into each user's profile **enabled**, with no user interaction and no profile
+preferences, and the plugin immediately sets its preferences. Because the
+imported copy lives in the profile, the redirect survives a client update
+that replaces the install directory. Removing it later stays user-controllable:
+uninstalling through Tools → Plugins restores the captured pre-plugin state.
+Only the Linux path is verified; on macOS the equivalent directory is inside
+the app bundle (`Zotero.app/Contents/MacOS/distribution/extensions/`) and on
+Windows `C:\Program Files\Zotero\distribution\extensions\` — confirm both on a
+real machine before relying on them. A plain drop into the profile's
+`extensions/` directory without `extensions.autoDisableScopes=0` stays
+**disabled** — the add-on manager treats that as a sideload requiring
+approval, so use the `distribution/extensions` path for bundling.
 
 ## Uninstall
 
