@@ -61,9 +61,9 @@ altero already supports that sign-in method.
 | Software | Open source client | Open source client | Commercial | Closed, owned by Elsevier | Open source client and server |
 | Where the data lives | United States | United States | United States (Clarivate) | United States (Elsevier) | Netherlands |
 | Institutional sign-in | No | No | No | No | Yes, via SURFconext |
-| Free storage | 300 MB | Unlimited on institution plans | Product includes limited online storage | Limited free storage | Sized by the institutions |
-| Group libraries | Draw on the owner's quota | Unlimited | Limited collaboration features | Limited self-hosting and control | Full group libraries, no quota |
-| Cost model | Free | Individual plans at $20 to $120 per user per year, or an institution plan, about 5,000 euro per year for a university with 15,000 students and staff | Recurring license fees | Free with commercial owner | Staff time plus a small server landscape |
+| Free storage | 300 MB | Unlimited on institution plans | Limited online storage included with the license | 2 GB personal and 100 MB shared since the institutional upgrade ended | Sized by the institutions |
+| Group libraries | Draw on the owner's quota | Unlimited | Limited collaboration features | Private groups are capped and share 100 MB | Full group libraries, no quota |
+| Cost model | Free | Individual plans at $20 to $120 per user per year, or an institution plan, about 5,000 euro per year for a university with 15,000 students and staff | About $110 per seat per year in one public university program, campus-wide quotes on request | Free after the institutional edition was discontinued in 2024 | Staff time plus a small server landscape |
 | Self-hosting | Files only, through WebDAV, and group libraries not at all | Same | No | No | The whole service |
 
 Two notes for fairness. First, zotero.org is run by a nonprofit, and its
@@ -71,6 +71,16 @@ storage subscriptions fund Zotero's development. A national server does not
 remove the case for supporting Zotero upstream, and the pilot budget should
 include a contribution to the Zotero project. Second, altero exists because a
 self-hosted option was missing, not because zotero.org serves users badly.
+
+EndNote and Mendeley show the two other models. EndNote is licensed per seat:
+one public university's site license program charges $110 per seat per year,
+and a campus-wide agreement is quoted individually by Clarivate. Mendeley
+shows what a closed institutional arrangement can cost later: Elsevier
+discontinued the Mendeley Institutional Edition in 2024, and at the University
+of Twente the institutional benefits ended, which dropped users to 2 GB of
+personal storage and 100 MB of shared storage. A service built on open source
+software has no equivalent risk, because the institutions hold the source code
+and can always move the data.
 
 ## What it takes to set up
 
@@ -204,5 +214,8 @@ implemented. The warnings that matter for this proposal:
   and [connecting in five steps](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128910038/)
 - [Zotero storage pricing](https://www.zotero.org/storage/) and the
   [institution storage FAQ](https://www.zotero.org/support/storage_institutions_faq)
+- [EndNote site license order form, University of Hawaiʻi](https://www.hawaii.edu/sitelic/endnote/endnoteform.pdf),
+  the source of the $110 per seat per year figure
+- [Mendeley institutional license discontinuation, University of Twente](https://www.utwente.nl/en/lisa-library-news/2024/12/29937/discontinuation-mendeley-institutional-license)
 - [Zotero synchronization overview](https://www.zotero.org/support/sync),
   the basis for the WebDAV and group-library comparison
