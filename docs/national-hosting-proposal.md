@@ -12,7 +12,7 @@ universities and hogescholen. Users keep the Zotero Desktop application they
 already use, sign in through their own institution via SURFconext, and keep
 their library data on Dutch infrastructure. altero is free software under the
 AGPL-3.0 license, so there are no license fees. The realistic costs are one
-small server landscape and 0.1 to 0.4 FTE of staff time, depending on scale,
+small server environment and 0.1 to 0.4 FTE of staff time, depending on scale,
 and a few terabytes of attachment storage even at national size.
 A pilot with one or two institutions can start after a short technical
 preparation, and the SURFconext connection is configuration work because
@@ -43,11 +43,11 @@ altero already supports that sign-in method.
   quotas, pricing and terms. A group library no longer draws on the personal
   quota of whichever member owns the group.
 - **Open source.** The server is AGPL-3.0, the client is open source, and
-  export is a first-class feature, so users and institutions are never locked
+  export is a core feature, so users and institutions are never locked
   in. Institutions can fix or extend the software instead of filing wishes
   with a vendor.
 - **Cost.** There are no per-seat licenses. The cost is staff time and one
-  small server landscape, under one euro per active user per year at national
+  small server environment, under one euro per active user per year at national
   scale under the assumptions below.
 - **Continuity.** The desktop application keeps a complete local copy of every
   library, so users are protected even if the service stops. The service can be
@@ -63,20 +63,20 @@ altero already supports that sign-in method.
 | Institutional sign-in | No | No | No | No | Yes, via SURFconext |
 | Free storage | 300 MB | Unlimited on institution plans | Online storage included with the license | 2 GB personal and 100 MB shared | Sized by the institutions |
 | Group libraries | Draw on the owner's quota | Unlimited | Limited collaboration features | Private groups are capped and share 100 MB | Full group libraries, no quota |
-| Cost model | Free | Individual plans at $20 to $120 per user per year, or an institution plan, about 5,000 euro per year for a university with 15,000 students and staff | About $110 per seat per year in one public university program, campus-wide quotes on request | Free; several universities ended their institutional licenses in 2024 | Staff time plus a small server landscape |
+| Cost model | Free | Individual plans at $20 to $120 per user per year, or an institution plan, about 5,000 euro per year for a university with 15,000 students and staff | About $110 per seat per year in one public university program, campus-wide quotes on request | Free; several universities ended their institutional licenses in 2024 | Staff time plus a small server environment |
 | Self-hosting | Files only, through WebDAV, and group libraries not at all | Same | No | No | The whole service |
 
-Two notes for fairness. First, zotero.org is run by a nonprofit, and its
-storage subscriptions fund Zotero's development. A national server does not
-remove the case for supporting Zotero upstream, and the pilot budget should
-include a contribution to the Zotero project. Second, altero exists because a
-self-hosted option was missing, not because zotero.org serves users badly.
+For fairness, zotero.org is run by a nonprofit, and its storage subscriptions
+fund Zotero's development. A national server does not remove the case for
+supporting Zotero itself, and the pilot budget should include a contribution
+to the Zotero project. Also, altero exists because a self-hosted option was
+missing, not because zotero.org serves users badly.
 
 EndNote and Mendeley show the two other models. EndNote is licensed per seat:
 one public university's site license program charges $110 per seat per year,
 and a campus-wide agreement is quoted individually by Clarivate. Mendeley
-shows what a closed institutional arrangement can cost later:
-institutional Mendeley licenses ended at several universities in 2024,
+shows what a closed institutional arrangement can cost later. Institutional
+Mendeley licenses ended at several universities in 2024,
 including the University of Twente's, which dropped users there to 2 GB of
 personal storage and 100 MB of shared storage. A service built on open source
 software has no equivalent risk, because the institutions hold the source code
@@ -101,7 +101,7 @@ individually where no public figure exists.
 
 The same products on the two sides that matter for this decision: what the
 user runs, and what the institution runs. The client differences are mostly a
-matter of taste. The hosting differences are the substance.
+matter of taste. The hosting differences are more important.
 
 What the user runs:
 
@@ -122,7 +122,7 @@ What the institution runs:
 | Product | Hosting options | Group libraries | Institutional sign-in | Account administration | API for other tools |
 |---|---|---|---|---|---|
 | zotero.org | Managed only, nonprofit, United States | Yes, files draw on the owner's quota | No | None, self-service accounts | Yes, Web API v3 |
-| altero, the proposed national server | Managed by SURF, or self-hosted | Yes, full group libraries with shared storage | Yes, SURFconext through OIDC or SAML | Yes: just-in-time accounts, claim-based suspension, retention settings | Yes, Web API v3 plus an OAuth 2.0 server |
+| altero, the proposed national server | Managed by SURF, or self-hosted | Yes, full group libraries with shared storage | Yes, SURFconext through OIDC or SAML | Yes: accounts created at first sign-in, attribute-based suspension, retention settings | Yes, Web API v3 plus an OAuth 2.0 server |
 | Zotero dataserver, self-hosted | Self-hosted only, no supported installation | Yes | No | None, no admin interface | Yes, Web API v3 |
 | Zotero with WebDAV | Any WebDAV server, attachment files only | No, personal library files only | No | No | No, metadata stays on zotero.org |
 | EndNote and Fusion | Managed only, Clarivate | Yes, shared groups and projects | Fusion: yes | Fusion: admin console with analytics | No |
@@ -136,11 +136,10 @@ What the institution runs:
 
 ### Known use in Dutch institutions
 
-Where each product already has a Dutch footprint, and who to ask for
-first-hand experience and prices. The commercial pattern here is not subtle:
-the Dutch university RefWorks licensees below are all leaving the product,
-Twente has now dropped two reference managers in two years, and the
-replacements are Zotero, Mendeley or Clarivate products.
+Where each product is already used in the Netherlands, and who to ask for
+first-hand experience and prices. The Dutch university RefWorks licensees below
+are all leaving the product, Twente has now dropped two reference managers in
+two years, and the replacements are Zotero, Mendeley or Clarivate products.
 
 | Product | Known use in the Netherlands | Where to get more detail |
 |---|---|---|
@@ -156,30 +155,30 @@ replacements are Zotero, Mendeley or Clarivate products.
 | ReadCube and Papers | No public Dutch licensees found | Digital Science |
 | JabRef, self-hosted dataserver, altero | No known institutional deployments in the Netherlands. altero has no production deployments anywhere yet, so a pilot would be the first | altero's GitHub discussions |
 
-None of this changes the recommendation, for two reasons. First,
-interoperability: Zotero Desktop, its browser connector, its word processor
+The comparison above does not change the recommendation. First, there is
+interoperability. Zotero Desktop, its browser connector, its word processor
 plugins and its catalog of citation styles form one ecosystem, and only
 zotero.org and altero serve that client. Choosing another manager means
-choosing a different client and migrating every library. Second, product churn
-is the autonomy argument in practice: RefWorks is being retired, institutional
-Mendeley licenses ended at several universities in 2024, and Sciwheel users
-were moved to a renamed product. A hosted service always carries the risk that the product
-around the data changes or disappears. Self-hosting the server does not
-prevent that, but it keeps the data, the client and the exit path under the
-institutions' control.
+choosing a different client and migrating every library. Second, product
+turnover is the autonomy argument in practice. RefWorks is being retired,
+institutional Mendeley licenses ended at several universities in 2024, and
+Sciwheel users were moved to a renamed product. A hosted service always
+carries the risk that the product around the data changes or disappears.
+Self-hosting the server does not prevent that, but it keeps the data, the
+client and the exit path under the institutions' control.
 
-One further option deserves mention for completeness: Zotero's own dataserver
+For completeness, Zotero's own dataserver
 is open source, so a technical team can run it. Nobody maintains self-hosting
 as a product, though. The project documents no supported installation, the
 community Docker and LXC projects are one-person efforts that have stalled,
 and a national service on the dataserver would mean operating a legacy PHP and
 MySQL stack with a search cluster, no web interface, no account administration
-and no SURFconext integration. altero is the maintained product aimed at
-exactly the operating model this proposal describes.
+and no SURFconext integration. altero is the maintained product for the
+operating model this proposal describes.
 
 ## What it takes to set up
 
-The deployment is deliberately small: one application, one PostgreSQL database
+The deployment is small: one application, one PostgreSQL database
 and one directory of attachment files, with a TLS endpoint in front. There is
 no search cluster, message queue or object store to run. The published Docker
 image needs no build, so the setup is:
@@ -200,8 +199,8 @@ SURF handles as part of its normal connection process.
 
 ## What it takes to run
 
-Tier 1 support stays where it belongs, with local libraries and IT helpdesks,
-because questions about using Zotero are the same as today. The central team
+Tier 1 support stays with local libraries and IT helpdesks, because questions
+about using Zotero are the same as today. The central team
 handles everything server-side:
 
 | Phase | Scale | Staff | Main tasks |
@@ -210,7 +209,7 @@ handles everything server-side:
 | Early production | 5 to 20 institutions, tens of thousands of users | 0.15 to 0.25 FTE | The same, plus onboarding institutions through SURF and capacity management |
 | National service | Most of the sector, 50,000 or more users | 0.25 to 0.4 FTE | The same, plus tier 2 support coordination and longer-term capacity planning |
 
-Onboarding an institution is mostly automatic: SURF connects its identity
+Onboarding an institution is mostly automatic. SURF connects its identity
 provider, and users sign in and get an account on first use. When someone
 leaves an institution, the server notices the next time they sign in and
 suspends the account, which also blocks the desktop client, while keeping the
@@ -226,10 +225,10 @@ upload an attachment and a quarter only use group libraries, and the FTE and
 student counts include many support staff and researchers who hardly use
 reference management. The scenarios below therefore assume 50 MB of attachments per
 active user on average, treated as an upper limit for the first estimate, and
-refit from pilot telemetry once real numbers exist. Deduplication reinforces
-this: files are stored once per digest, so the PDF a supervisor and ten PhD
-students all hold is on disk once. The database holds metadata only and stays
-small next to even that modest attachment store.
+adjusted from pilot usage data once real numbers exist. Deduplication
+reinforces the estimate: files are stored once per digest, so the PDF a
+supervisor and ten PhD students all hold is on disk once. The database holds
+metadata only and stays small even compared with the modest attachment store.
 
 | Scenario | Active users | Attachments | Database | Application | PostgreSQL |
 |---|---|---|---|---|---|
@@ -237,9 +236,9 @@ small next to even that modest attachment store.
 | Early production | 25,000 | 1.3 TB | 10 to 20 GB | 2 nodes, 4 vCPU, 8 GB each | 4 to 8 vCPU, 32 GB, fast disk |
 | National | 100,000 | 5 TB | Around 50 GB | 3 to 4 nodes behind a load balancer | 8 to 16 vCPU, 64 GB |
 
-Context that makes these numbers credible: the application is measured at
-about 125 MB of memory when idle, attachments are stored once per file digest
-so shared PDFs are not duplicated, and the database only holds metadata. The
+The numbers are credible because the application is measured at about 125 MB
+of memory when idle, and attachments are stored once per file digest so
+shared PDFs are not duplicated. The database only holds metadata. The
 attachment directory must stay on a block-backed filesystem or an NFS mount,
 with backups going to object storage, because the server refuses the
 copy-then-rename behavior of object-storage filesystem mounts.
@@ -248,8 +247,8 @@ copy-then-rename behavior of object-storage filesystem mounts.
 
 Indicative only, to be refined with SURF rates. Assumptions: 90,000 euro per
 FTE per year including overhead, and 3 to 10 euro per terabyte per month for
-bulk attachment storage. At 50 MB per active user, storage is a rounding error
-and the virtual machines dominate the infrastructure cost.
+bulk attachment storage. At 50 MB per active user, the storage cost is
+negligible and the virtual machines dominate the infrastructure cost.
 
 | Scenario | Infrastructure per year | Staff per year | Total | Per active user per year |
 |---|---|---|---|---|
@@ -257,7 +256,7 @@ and the virtual machines dominate the infrastructure cost.
 | Early production, 25,000 users | 2,000 to 6,500 euro | 14,000 to 23,000 euro | 16,000 to 29,500 euro | 0.64 to 1.18 euro |
 | National, 100,000 users | 10,000 to 20,000 euro | 23,000 to 36,000 euro | 33,000 to 56,000 euro | 0.33 to 0.56 euro |
 
-The honest comparison comes from the status quo. The University of Twente, the
+The comparison comes from the status quo. The University of Twente, the
 originator of this proposal, already pays about 5,000 euro per year for a
 Zotero institution subscription with unlimited storage, covering roughly
 5,000 FTE and 10,000 students. Scaled by
@@ -275,19 +274,19 @@ needed for the national decision.
 altero is at release 1.0.0-beta.2. Two real Zotero profiles passed 47 scenario
 and database combinations across SQLite and PostgreSQL, covering 594 phases of
 desktop synchronization, and the project documents what is deliberately not
-implemented. The warnings that matter for this proposal:
+implemented. The warnings relevant to this proposal:
 
 - **Treat the pilot as a pilot.** Keep backups and keep zotero.org or local
   copies available during the pilot. Do not migrate irreplaceable libraries
   until the pilot report is positive.
 - **Mobile.** The official Zotero iOS and Android applications have the server
   address compiled in and cannot point at another server. Desktop is the
-  supported surface; mobile needs a custom build, which the project supports
+  supported platform; mobile needs a custom build, which the project supports
   but does not distribute.
-- **Upstream capacity.** altero currently depends on a small upstream team.
-  The license and public source remove the vendor-risk part of that, and SURF
-  operating the service is exactly the kind of deployment that widens the
-  contributor base.
+- **Maintainer capacity.** altero currently depends on a small team of
+  maintainers. The license and public source remove the vendor-risk part of
+  that, and SURF operating the service is the kind of deployment that widens
+  the contributor base.
 - **Agreements.** SURF acts as processor, institutions as controllers, so a
   data processing agreement and a retention policy are part of the pilot
   setup. The SURFconext client id must stay fixed once issued, because the
