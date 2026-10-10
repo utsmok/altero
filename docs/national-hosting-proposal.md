@@ -340,16 +340,26 @@ ways to remove them:
 | Mobile apps | No | Yes, with the same pipeline applied to the mobile apps |
 | Exit path | Uninstalling the plugin restores stock behavior | Users switch back to official downloads |
 
-The companion extension is the recommended first step. Zotero loads
+The companion extension is the recommended first step, and a working
+version exists in this repository at `tools/surf-sync-plugin/`. Zotero loads
 bootstrap plugins, which are add-on programs that start with the client. The
-compatibility harness itself installs one in every test profile. A plugin of
-a few hundred lines can set both preferences as the sign-in flow expects,
-re-assert them after client updates, and stop on demand. "Zotero from SURF"
+compatibility harness itself installs one in every test profile. The plugin
+captures the client's current preferences on first run, sets both
+preferences as the sign-in flow expects, re-asserts them after client
+updates, restores the originals when uninstalled, and writes nothing while
+disabled. It was verified against the pinned Zotero 10.0.5 desktop release:
+installation sets exactly the two expected preferences, uninstalling
+through the add-on manager restores the prior state, and one undocumented
+client requirement surfaced during testing — Zotero 10 rejects any plugin
+manifest without an `update_url` entry, which the plugin's manifest now
+carries and its README explains. "Zotero from SURF"
 can then mean the official
 installer plus one plugin file, distributed from a SURF download page or
 pushed by institutional IT the way managed browser extensions already are.
 
-The patched full build is the heavier option. SURF's build system checks
+The patched full build is the heavier option, and a working pipeline
+skeleton exists at `tools/surf-client-build/` with a CI workflow in
+`.github/workflows/surf-client-build.yml`. SURF's build system checks
 out the official client repository at a pinned release tag, applies a patch
 that defaults both preferences to the national server, and publishes signed
 installers. It gives users an out-of-the-box client, and the same pipeline
