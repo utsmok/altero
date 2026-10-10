@@ -74,6 +74,21 @@ user-library upload needs a user-scoped key.
 4. **`Zotero.Debug.get()` is async** in Zotero 10, and the debug store resets
    on every launch: call `Debug.setStore(true)` in the session under test,
    then dump the buffer before it exits.
+5. **A pinned extracted app dir self-upgrades.** Gecko 140 ignores the
+   legacy `app.update.enabled` the harness profile sets: any client run
+   longer than a few seconds downloads and stages the current release into
+   `updates/`, and the next launch applies it before starting (symptom:
+   `Expected desktop 10.0.5, got 10.0.6` with a verified 10.0.5 archive).
+   Freeze the tree after extraction or after patching: `chmod -R a-w`, and
+   set `app.update.auto=false` plus `app.update.staging.enabled=false` in
+   the profile.
+6. **The client fetches `/retractions/list` on the sync server at startup.**
+   altero does not implement it, so every client start logs
+   `HTTP GET .../retractions/list failed with status code 404` and
+   continues without user impact (verified 2026-10-10 with a real 10.0.5
+   client against a disposable server and the local deployment). Sync,
+   uploads, and settings are unaffected; implement the endpoint only if
+   that log line ever bothers anyone.
 
 ## Known gaps observed
 
