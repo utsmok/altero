@@ -2419,15 +2419,25 @@ ways to remove them:</p>
 </tr>
 </tbody>
 </table>
-<p>The companion extension is the recommended first step. Zotero loads
+<p>The companion extension is the recommended first step, and a working
+version exists in this repository at <code>tools/surf-sync-plugin/</code>. Zotero loads
 bootstrap plugins, which are add-on programs that start with the client. The
-compatibility harness itself installs one in every test profile. A plugin of
-a few hundred lines can set both preferences as the sign-in flow expects,
-re-assert them after client updates, and stop on demand. "Zotero from SURF"
+compatibility harness itself installs one in every test profile. The plugin
+captures the client's current preferences on first run, sets both
+preferences as the sign-in flow expects, re-asserts them after client
+updates, restores the originals when uninstalled, and writes nothing while
+disabled. It was verified against the pinned Zotero 10.0.5 desktop release:
+installation sets exactly the two expected preferences, uninstalling
+through the add-on manager restores the prior state, and one undocumented
+client requirement surfaced during testing — Zotero 10 rejects any plugin
+manifest without an <code>update_url</code> entry, which the plugin's manifest now
+carries and its README explains. "Zotero from SURF"
 can then mean the official
 installer plus one plugin file, distributed from a SURF download page or
 pushed by institutional IT the way managed browser extensions already are.</p>
-<p>The patched full build is the heavier option. SURF's build system checks
+<p>The patched full build is the heavier option, and a working pipeline
+skeleton exists at <code>tools/surf-client-build/</code> with a CI workflow in
+<code>.github/workflows/surf-client-build.yml</code>. SURF's build system checks
 out the official client repository at a pinned release tag, applies a patch
 that defaults both preferences to the national server, and publishes signed
 installers. It gives users an out-of-the-box client, and the same pipeline
