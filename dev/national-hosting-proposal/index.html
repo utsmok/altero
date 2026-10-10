@@ -1,0 +1,2705 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A self-hosted synchronization server for Zotero">
+      
+      
+        <meta name="author" content="Erich Seifert">
+      
+      
+        <link rel="canonical" href="https://altero.run/dev/national-hosting-proposal/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.57">
+    
+    
+      
+        <title>Proposal: a SURF-managed national Zotero server for Dutch higher education - altero</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.5da3a30f.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.812a03bb.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#proposal-a-surf-managed-national-zotero-server-for-dutch-higher-education" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="altero" class="md-header__button md-logo" aria-label="altero" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            altero
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Proposal: a SURF-managed national Zotero server for Dutch higher education
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun-moon" viewBox="0 0 24 24"><path d="M12 2v2M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715M16 12a4 4 0 0 0-4-4M19 5l-1.256 1.256M20 12h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/eseifert/altero" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eseifert/altero
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="./.." class="md-tabs__link">
+          
+  
+  Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/" class="md-tabs__link">
+          
+  
+  Get started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../web-interface/" class="md-tabs__link">
+          
+  
+  Using altero
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../deployment/" class="md-tabs__link">
+          
+  
+  Running altero
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../status/" class="md-tabs__link">
+          
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../client-compatibility/" class="md-tabs__link">
+          
+  
+  Contributing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="altero" class="md-nav__button md-logo" aria-label="altero" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    altero
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eseifert/altero" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eseifert/altero
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Overview
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../motivation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Why altero exists
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Get started
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Get started
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Getting started
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Connecting a Zotero client
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Using altero
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Using altero
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  The web interface
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Accounts and personal settings
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/library/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Browsing and organizing a library
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/sharing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publishing and sharing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Groups, invitations and activity
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/data-transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Moving, importing and exporting data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Running altero
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Running altero
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Deployment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Administration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oauth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Connecting other applications
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../email/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Email
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Reference
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Reference
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  What works
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Compatibility reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Database schema
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contributing
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Contributing
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Checking desktop compatibility
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing-two-clients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Syncing two desktop clients
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  The design system
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Web interface implementation notes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/eseifert/altero/blob/master/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Development guide
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Summary
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-proposed" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What is proposed
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-case-for-and-against" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The case for and against
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The case for and against">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-case-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The case for
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-devils-advocate-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The devil's advocate case
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-alternatives-compare" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        How the alternatives compare
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-wider-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The wider field
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functionality-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Functionality overview
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-use-in-dutch-institutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Known use in Dutch institutions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-takes-to-set-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What it takes to set up
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-takes-to-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What it takes to run
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-zotero-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Connecting Zotero clients
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting Zotero clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributing-a-pre-configured-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Distributing a pre-configured client
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What it needs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What it costs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maturity-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maturity and risks
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Recommended next steps
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        References
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+    <a href="https://github.com/eseifert/altero/edit/master/docs/national-hosting-proposal.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="proposal-a-surf-managed-national-zotero-server-for-dutch-higher-education">Proposal: a SURF-managed national Zotero server for Dutch higher education<a class="headerlink" href="#proposal-a-surf-managed-national-zotero-server-for-dutch-higher-education" title="Permanent link">&para;</a></h1>
+<p>Samuel Mok, information specialist, Universiteit Twente
+(<a href="mailto:s.mok@utwente.nl">s.mok@utwente.nl</a>), October 10, 2026.</p>
+<p>Draft proposal for SURF, universities and hogescholen. This document is
+fork-local research material and is not part of the altero documentation set.
+The technical SSO analysis it builds on is in <a href="../sso-surf/">sso-surf.md</a>.</p>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>The proposal is that SURF operates one shared altero server for all Dutch
+universities and hogescholen. Users keep the Zotero Desktop application they
+already use, sign in through their own institution via SURFconext, and keep
+their library data on Dutch infrastructure. altero is free software under the
+AGPL-3.0 license, so there are no license fees. The realistic costs are one
+small server environment and 0.1 to 0.4 FTE of staff time, depending on scale,
+and a few terabytes of attachment storage even at national size.
+A pilot with one or two institutions can start after a short technical
+preparation, and the SURFconext connection is configuration work because
+altero already implements it.</p>
+<h2 id="what-is-proposed">What is proposed<a class="headerlink" href="#what-is-proposed" title="Permanent link">&para;</a></h2>
+<p>A sync server is the service that copies a reference library between a
+researcher's devices and their group's shared library. Zotero is a widely used,
+free, open source reference manager. Its desktop application is open source and
+runs on Windows, macOS and Linux. By default it synchronizes with a service
+at zotero.org in the United States.</p>
+<p>altero is an open source server that implements the same synchronization protocol.
+An unmodified Zotero Desktop application synchronizes with it, including
+attachments, notes, annotations, full-text search and group libraries. One
+server can serve all institutions, because users sign in through SURFconext and
+altero already supports that sign-in method.</p>
+<h2 id="the-case-for-and-against">The case for and against<a class="headerlink" href="#the-case-for-and-against" title="Permanent link">&para;</a></h2>
+<h3 id="the-case-for">The case for<a class="headerlink" href="#the-case-for" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Privacy and the GDPR.</strong> Library data, including PDFs and notes, stays on
+  infrastructure in the Netherlands under EU law. Sign-in releases the minimum
+  set of attributes, the server does no profiling, and the administrator role
+  is designed so that operating the service does not mean reading everyone's
+  library.</li>
+<li><strong>Autonomy.</strong> Institutions stop depending on one American service's storage
+  quotas, pricing and terms. A group library no longer draws on the personal
+  quota of whichever member owns the group.</li>
+<li><strong>The market is churning anyway.</strong> The Dutch university RefWorks licensees
+  below have all left the product. Institutional Mendeley licenses ended
+  at several universities in 2024, and Twente has dropped two reference
+  managers in two years. Twente's EndNote agreement ended in December 2025.
+  Every one
+  of those migrations is already being paid for. This proposal changes
+  where they land, not whether they happen.</li>
+<li><strong>Open source.</strong> The server is AGPL-3.0, the client is open source, and
+  export is a core feature, so users and institutions are never locked
+  in. Institutions can fix or extend the software instead of requesting
+  features from a vendor.</li>
+<li><strong>Cost.</strong> There are no per-seat licenses. The cost is a fraction of one FTE
+  of staff time and one small server environment, with infrastructure between
+  10,000 and 20,000 euro per year at national scale.</li>
+<li><strong>Continuity.</strong> The desktop application keeps a complete local copy of every
+  library, so users are protected even if the service stops. The service can
+  be moved between infrastructures because both the client and the server are
+  open source.</li>
+</ul>
+<h3 id="the-devils-advocate-case">The devil's advocate case<a class="headerlink" href="#the-devils-advocate-case" title="Permanent link">&para;</a></h3>
+<p>The list below gives the honest arguments against, with a response where one
+exists. Where no response exists, the argument is left standing.</p>
+<ol>
+<li><strong>zotero.org already does this job.</strong> It is free below 300 MB and run by
+   a nonprofit, and its unlimited institution subscription is affordable.
+   Twente's costs about 5,000 euro per year. If an institution
+   does not care where its data lives or who can suspend accounts, zotero.org
+   is the cheaper and less risky choice, and this proposal duplicates it.
+   <em>Response:</em> the argument rests on residency, group libraries with files,
+   sign-in integration and account lifecycle; institutions indifferent to all
+   four should indeed stay where they are.</li>
+<li><strong>The configuration surface is unsupported.</strong> The Zotero project does not
+   support third-party sync servers. The two preferences that redirect a
+   desktop client work today, but they are not a documented integration
+   surface. A desktop release could change their behavior. The streaming
+   preference has a real trap. If it is not set, the client keeps talking to
+   zotero.org's streaming endpoint and may send the altero API key there.
+   <em>Response:</em> the compatibility matrix pins desktop releases and runs
+   acceptance scenarios with real client profiles before any deployment.
+   The client package SURF distributes, described below, would set both
+   preferences so the trap never fires, reducing the risk to small. The
+   risk does not reach zero, and the remaining risk is the strongest
+   technical argument against the project.</li>
+<li><strong>Official mobile apps cannot connect at all.</strong> The iOS and Android
+   applications compile the zotero.org hosts into the binary and have no
+   setting for another server, so connecting them means patched builds that
+   nobody official publishes. Until such builds exist, mobile users are
+   second-class on the national server. <em>The objection stands today.</em></li>
+<li><strong>Key-person and project risk.</strong> altero is a young project at release
+   1.0.0-beta.2 with a small team, and a national service would make it
+   critical infrastructure. <em>Response:</em> the AGPL license means SURF can
+   take over the code without permission, and operating it is estimated at a
+   fraction of one FTE, but the governance question is real and is SURF's to
+   answer, not the software's.</li>
+<li><strong>Migration is not free.</strong> A desktop profile that has synced with
+   zotero.org carries its old numeric account id, and the server refuses to
+   hand it a key for a different account. An account with that id must be
+   created on the server, and attachments move off institutional WebDAV only
+   through a deliberate full re-upload step. Users who keep
+   both a zotero.org account and a new one risk split libraries. <em>Response:</em>
+   tooling and a documented procedure exist, and onboarding happens
+   institution by institution, not all at once.</li>
+<li><strong>Nothing has run at national scale.</strong> The desktop evidence covers
+   594 acceptance phases across 47 scenario and database combinations, on
+   pilot-sized libraries. No load test
+   has exercised 25,000 or 100,000 concurrent users, and the sizing in this
+   document is arithmetic, not measurement. <em>Response:</em> the pilot phase
+   exists to replace arithmetic with evidence before any national
+   commitment.</li>
+<li><strong>Governance is the hard part.</strong> A sector service needs retention policy,
+   an uptime commitment, incident response and multi-year funding. Those
+   decisions, not the software, determine whether this service earns trust,
+   and open source does not write policy. <em>The objection stands, and it is
+   the part SURF actually signs up for.</em></li>
+</ol>
+<h3 id="how-the-alternatives-compare">How the alternatives compare<a class="headerlink" href="#how-the-alternatives-compare" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>zotero.org free</th>
+<th>zotero.org paid</th>
+<th>EndNote</th>
+<th>Mendeley</th>
+<th>Shared altero server</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Software</td>
+<td>Open source client</td>
+<td>Open source client</td>
+<td>Commercial</td>
+<td>Closed, owned by Elsevier</td>
+<td>Open source client and server</td>
+</tr>
+<tr>
+<td>Where the data lives</td>
+<td>United States</td>
+<td>United States</td>
+<td>United States (Clarivate)</td>
+<td>United States (Elsevier)</td>
+<td>Netherlands</td>
+</tr>
+<tr>
+<td>Institutional sign-in</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Yes, via SURFconext</td>
+</tr>
+<tr>
+<td>Free storage</td>
+<td>300 MB</td>
+<td>Unlimited on institution plans</td>
+<td>Online storage included with the license</td>
+<td>2 GB personal and 100 MB shared</td>
+<td>Sized by the institutions</td>
+</tr>
+<tr>
+<td>Group libraries</td>
+<td>Draw on the owner's quota</td>
+<td>Unlimited</td>
+<td>Limited collaboration features</td>
+<td>Private groups are capped and share 100 MB</td>
+<td>Full group libraries, no quota</td>
+</tr>
+<tr>
+<td>Cost model</td>
+<td>Free</td>
+<td>Individual plans at $20 to $120 per user per year, or an institution plan, about 5,000 euro per year for a university with 15,000 students and staff</td>
+<td>About $110 per seat per year in one public university program, campus-wide quotes on request</td>
+<td>Free; several universities ended their institutional licenses in 2024</td>
+<td>Staff time plus a small server environment</td>
+</tr>
+<tr>
+<td>Self-hosting</td>
+<td>Files only, through WebDAV, and group libraries not at all</td>
+<td>Same</td>
+<td>No</td>
+<td>No</td>
+<td>The whole service</td>
+</tr>
+</tbody>
+</table>
+<p>For fairness, zotero.org is run by a nonprofit, and its storage subscriptions
+fund Zotero's development. A national server does not remove the case for
+supporting Zotero itself, and the pilot budget should include a contribution
+to the Zotero project. Also, altero exists because a self-hosted option was
+missing, not because zotero.org serves users badly.</p>
+<p>EndNote and Mendeley show the two other models. EndNote is licensed per
+seat. One public university's site license program charges $110 per seat per
+year, and a campus-wide agreement is quoted individually by Clarivate.
+Mendeley shows what a closed institutional arrangement can cost later.
+Institutional
+Mendeley licenses ended at several universities in 2024,
+including the University of Twente's, which dropped users there to 2 GB of
+personal storage and 100 MB of shared storage. A service built on open source
+software has no equivalent risk, because the institutions hold the source code
+and can always move the data.</p>
+<h3 id="the-wider-field">The wider field<a class="headerlink" href="#the-wider-field" title="Permanent link">&para;</a></h3>
+<p>The table below makes the same comparison across the rest of the market.
+Prices are quoted individually where no public figure exists.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Institutional price</th>
+<th>Data location</th>
+<th>Openness</th>
+<th>Autonomy and exit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RefWorks (Clarivate)</td>
+<td>Campus subscription, quote-based</td>
+<td>United States</td>
+<td>Closed</td>
+<td>Being retired; Clarivate purges accounts 120 days after a license ends, and steers users to EndNote Fusion</td>
+</tr>
+<tr>
+<td>EndNote and EndNote Fusion (Clarivate)</td>
+<td>About $110 per seat per year in one public program, campus quotes otherwise</td>
+<td>United States</td>
+<td>Closed</td>
+<td>Proprietary library format; Fusion adds sign-on, analytics and AI under Clarivate's cloud</td>
+</tr>
+<tr>
+<td>Citavi (Lumivero)</td>
+<td>Campus license, quote-based</td>
+<td>Provider cloud, run by Lumivero</td>
+<td>Closed</td>
+<td>At least one German university forbids storing personal or confidential project data in the Citavi cloud</td>
+</tr>
+<tr>
+<td>Paperpile</td>
+<td>From roughly $50 per user per year at list price, half that with the academic discount; site licenses quoted</td>
+<td>The user's own Google Drive</td>
+<td>Closed</td>
+<td>Requires Google accounts; export through open formats</td>
+</tr>
+<tr>
+<td>Lean Library Workspace, formerly Sciwheel</td>
+<td>Institutional, quoted</td>
+<td>Provider cloud, run by Technology from Sage</td>
+<td>Closed</td>
+<td>Changed hands and name; users were moved to the renamed Lean Library extension in 2025</td>
+</tr>
+<tr>
+<td>ReadCube and Papers (Digital Science)</td>
+<td>Individual and institutional</td>
+<td>United States</td>
+<td>Closed</td>
+<td>Niche in the Netherlands</td>
+</tr>
+<tr>
+<td>JabRef</td>
+<td>Free</td>
+<td>No central service</td>
+<td>Open source</td>
+<td>BibTeX-centered, no managed group synchronization, so it solves a different problem</td>
+</tr>
+</tbody>
+</table>
+<h3 id="functionality-overview">Functionality overview<a class="headerlink" href="#functionality-overview" title="Permanent link">&para;</a></h3>
+<p>The tables below compare the same products on the two sides that matter for
+this decision: what the user runs, and what the institution runs. The client
+differences are mostly a matter of taste. The hosting differences are more
+important.</p>
+<p>What the user runs:</p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Desktop app</th>
+<th>Browser connector</th>
+<th>Word processor plugins</th>
+<th>PDF reader with annotations</th>
+<th>Mobile apps</th>
+<th>Open source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zotero Desktop</td>
+<td>Windows, macOS, Linux</td>
+<td>Yes, all major browsers</td>
+<td>Word, LibreOffice, Google Docs</td>
+<td>Yes</td>
+<td>iOS and Android</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>EndNote 2025 and Fusion</td>
+<td>Windows, macOS</td>
+<td>Yes</td>
+<td>Word, plus LibreOffice and OpenOffice on Windows; Google Docs through EndNote Web</td>
+<td>Yes</td>
+<td>iOS only, iPhone and iPad</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Mendeley Reference Manager</td>
+<td>Windows, macOS, Linux</td>
+<td>Yes</td>
+<td>Word</td>
+<td>Yes</td>
+<td>None; the old apps were retired in 2021</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Citavi</td>
+<td>Windows, plus a web app</td>
+<td>Yes, the Citavi Picker</td>
+<td>Word</td>
+<td>Yes</td>
+<td>None; web only</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Paperpile</td>
+<td>None, it is a web app</td>
+<td>Yes</td>
+<td>Word and Google Docs</td>
+<td>Yes</td>
+<td>iOS and Android</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Lean Library Workspace</td>
+<td>None, web app</td>
+<td>Yes</td>
+<td>Word and Google Docs</td>
+<td>Yes</td>
+<td>None</td>
+<td>No</td>
+</tr>
+<tr>
+<td>ReadCube and Papers</td>
+<td>Windows, macOS</td>
+<td>Yes</td>
+<td>Word</td>
+<td>Yes</td>
+<td>iOS and Android</td>
+<td>No</td>
+</tr>
+<tr>
+<td>JabRef</td>
+<td>Windows, macOS, Linux (Java)</td>
+<td>Yes, BibTeX capture</td>
+<td>LibreOffice native, Word via add-ons</td>
+<td>Basic</td>
+<td>None</td>
+<td>Yes, MIT</td>
+</tr>
+<tr>
+<td>RefWorks, being retired</td>
+<td>None, web app</td>
+<td>Yes</td>
+<td>Word and Google Docs through RefWorks Citation Manager</td>
+<td>Basic</td>
+<td>None</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>What the institution runs:</p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Hosting options</th>
+<th>Group libraries</th>
+<th>Institutional sign-in</th>
+<th>Account administration</th>
+<th>API for other tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zotero.org</td>
+<td>Managed only, nonprofit, United States</td>
+<td>Yes, files draw on the owner's quota</td>
+<td>No</td>
+<td>None, self-service accounts</td>
+<td>Yes, Web API v3</td>
+</tr>
+<tr>
+<td>altero, the proposed national server</td>
+<td>Managed by SURF, or self-hosted</td>
+<td>Yes, full group libraries with shared storage</td>
+<td>Yes, SURFconext through OIDC or SAML</td>
+<td>Yes: accounts created at first sign-in, attribute-based suspension, retention settings</td>
+<td>Yes, Web API v3 plus an OAuth 2.0 server</td>
+</tr>
+<tr>
+<td>Zotero dataserver, self-hosted</td>
+<td>Self-hosted only, no supported installation</td>
+<td>Yes</td>
+<td>No</td>
+<td>None, no admin interface</td>
+<td>Yes, Web API v3</td>
+</tr>
+<tr>
+<td>Zotero with WebDAV</td>
+<td>Any WebDAV server, attachment files only</td>
+<td>No, personal library files only</td>
+<td>No</td>
+<td>No</td>
+<td>No, metadata stays on zotero.org</td>
+</tr>
+<tr>
+<td>EndNote and Fusion</td>
+<td>Managed only, Clarivate</td>
+<td>Yes, shared groups and projects</td>
+<td>Fusion: yes</td>
+<td>Fusion: admin console with analytics</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Mendeley</td>
+<td>Managed only, Elsevier</td>
+<td>Limited: 5 groups of up to 25 members and 100 MB shared storage on the free tier</td>
+<td>No</td>
+<td>None</td>
+<td>Limited, closed program</td>
+</tr>
+<tr>
+<td>Citavi</td>
+<td>Lumivero cloud, or Citavi DB Server on a local Windows server for shared projects</td>
+<td>Shared projects, yes</td>
+<td>No</td>
+<td>License management only</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Paperpile</td>
+<td>Managed only, on Google infrastructure</td>
+<td>Yes, shared libraries</td>
+<td>Google accounts, or SAML SSO on institutional plans</td>
+<td>Site license console</td>
+<td>Limited, export through Google Drive</td>
+</tr>
+<tr>
+<td>Lean Library Workspace</td>
+<td>Managed only</td>
+<td>Yes, shared projects</td>
+<td>Not verified</td>
+<td>Not verified</td>
+<td>No</td>
+</tr>
+<tr>
+<td>ReadCube and Papers</td>
+<td>Managed only</td>
+<td>Shared collections</td>
+<td>Not verified</td>
+<td>Not verified</td>
+<td>No</td>
+</tr>
+<tr>
+<td>JabRef</td>
+<td>No server; share files or a Git repository</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>RefWorks</td>
+<td>Managed only, being retired</td>
+<td>Yes</td>
+<td>Yes, institutional login</td>
+<td>Institutional admin console</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="known-use-in-dutch-institutions">Known use in Dutch institutions<a class="headerlink" href="#known-use-in-dutch-institutions" title="Permanent link">&para;</a></h3>
+<p>The table below shows where each product is already used in the Netherlands,
+and who to ask for first-hand experience and prices. The Dutch university
+RefWorks licensees below have all left the product, and Twente has now
+dropped two reference managers in two years. The replacements are Zotero,
+Mendeley or Clarivate products.</p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Known use in the Netherlands</th>
+<th>Where to get more detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zotero, client</td>
+<td>Guides and support at nearly every university library, including Utrecht, Leiden, Amsterdam and Twente</td>
+<td>The libraries' information specialists</td>
+</tr>
+<tr>
+<td>Zotero, institution storage</td>
+<td>The University of Twente, the originator of this proposal: a Zotero Institution subscription at about 5,000 euro per year covering roughly 5,000 FTE and 10,000 students, and a campus-wide license running since September 2025 with unlimited storage for @utwente.nl addresses</td>
+<td>zotero.org storage contact; Twente's library</td>
+</tr>
+<tr>
+<td>EndNote</td>
+<td>Campus licenses at Leiden, Radboud, Maastricht and Utrecht; Radboud's version is distributed through SURFspot. Twente ended its license on December 31, 2025</td>
+<td>The libraries; SURFspot for member pricing; Clarivate sales</td>
+</tr>
+<tr>
+<td>EndNote Fusion</td>
+<td>Erasmus University Rotterdam moved its RefWorks users to Fusion in October 2026</td>
+<td>The EUR library; Clarivate sales</td>
+</tr>
+<tr>
+<td>Mendeley</td>
+<td>Twente's institutional license ended in December 2024. Avans moved its users from RefWorks to Mendeley</td>
+<td>Twente's library; Avans Xplora; Elsevier support</td>
+</tr>
+<tr>
+<td>RefWorks</td>
+<td>Groningen ended it in December 2025, Utrecht required data export before January, Amsterdam ended access on June 30, 2025, and Erasmus moved to Fusion</td>
+<td>The four libraries; Clarivate</td>
+</tr>
+<tr>
+<td>Citavi</td>
+<td>No public Dutch campus license found; the published adoption list covers German institutions</td>
+<td>Lumivero or its reseller Alfasoft</td>
+</tr>
+<tr>
+<td>Paperpile</td>
+<td>No public Dutch institutional licensees found</td>
+<td>Paperpile sales</td>
+</tr>
+<tr>
+<td>Lean Library Workspace, formerly Sciwheel</td>
+<td>No public Dutch licensees found</td>
+<td>Technology from Sage</td>
+</tr>
+<tr>
+<td>ReadCube and Papers</td>
+<td>No public Dutch licensees found</td>
+<td>Digital Science</td>
+</tr>
+<tr>
+<td>JabRef, self-hosted dataserver, altero</td>
+<td>No known institutional deployments in the Netherlands. altero has no production deployments anywhere yet, so a pilot would be the first</td>
+<td>altero's GitHub discussions</td>
+</tr>
+</tbody>
+</table>
+<p>The comparison above does not change the recommendation. First, there is
+interoperability. Zotero Desktop, its browser connector, its word processor
+plugins and its catalog of citation styles form one ecosystem, and only
+zotero.org and altero serve that client. Choosing another manager means
+choosing a different client and migrating every library. Second, product
+turnover is the autonomy argument in practice. RefWorks is being retired,
+and institutional Mendeley licenses ended at several universities in 2024.
+Sciwheel users were moved to a renamed product. A hosted service always
+carries the risk that the product around the data changes or disappears.
+Self-hosting the server does not prevent that, but it keeps the data, the
+client and the exit path under the institutions' control.</p>
+<p>For completeness, Zotero's own dataserver
+is open source, so a technical team can run it. Nobody maintains self-hosting
+as a product, though. The project documents no supported installation, and
+the community Docker and LXC projects are one-person efforts that have
+stalled. A national service on the dataserver would mean operating a legacy
+MySQL stack with a search cluster, no web interface, no account administration
+and no SURFconext integration. altero is the maintained product for the
+operating model this proposal describes.</p>
+<h2 id="what-it-takes-to-set-up">What it takes to set up<a class="headerlink" href="#what-it-takes-to-set-up" title="Permanent link">&para;</a></h2>
+<p>The deployment is small: one application, one PostgreSQL database
+and one directory of attachment files, with a TLS endpoint in front for
+encrypted HTTPS access. There is no search cluster, message queue or object
+store to run. The published Docker
+image needs no build, so the setup is:</p>
+<ol>
+<li>Order a small virtual machine or container platform at SURF, mount an
+   attachment volume on block storage, and point an SMTP relay at the server.</li>
+<li>Deploy the Docker Compose stack, set the public URL, the database password
+   and the reverse proxy, and confirm a Zotero Desktop client can synchronize.</li>
+<li>Register the service in the SURFconext SP Dashboard test environment and add
+   the SURFconext sign-in provider in the administration screen. The whole
+   desktop sign-in flow can be tested before production.</li>
+<li>Test the backup and restore procedure, because a pilot institution will
+   ask about it first.</li>
+</ol>
+<p>The engineering work is three to five working days. The calendar time is
+dominated by the SURFconext registration and the agreements around it, which
+SURF handles as part of its normal connection process.</p>
+<h2 id="what-it-takes-to-run">What it takes to run<a class="headerlink" href="#what-it-takes-to-run" title="Permanent link">&para;</a></h2>
+<p>Tier 1 support stays with local libraries and IT helpdesks, because questions
+about using Zotero are the same as today. The central team
+handles everything server-side:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Scale</th>
+<th>Staff</th>
+<th>Main tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pilot</td>
+<td>1 to 2 institutions, hundreds to a few thousand users</td>
+<td>0.1 to 0.15 FTE</td>
+<td>Monitoring, monthly updates, backup checks, close contact with pilot users, feedback to the altero project</td>
+</tr>
+<tr>
+<td>Early production</td>
+<td>5 to 20 institutions, tens of thousands of users</td>
+<td>0.15 to 0.25 FTE</td>
+<td>The same, plus onboarding institutions through SURF and capacity management</td>
+</tr>
+<tr>
+<td>National service</td>
+<td>Most of the sector, 50,000 or more users</td>
+<td>0.25 to 0.4 FTE</td>
+<td>The same, plus tier 2 support coordination and longer-term capacity planning</td>
+</tr>
+</tbody>
+</table>
+<p>Onboarding an institution is mostly automatic. SURF connects its identity
+provider, and users sign in and get an account on first use, once automatic
+account creation is turned on for the provider. When someone leaves an
+institution, the server notices on their next sign-in, if the provider is
+configured to require an institutional claim, and suspends the account. The
+suspension also blocks the desktop client. The data is kept for
+reinstatement or removal under the retention policy. Someone who never
+signs in again is not caught automatically. An administrator handles that
+case instead.</p>
+<h2 id="connecting-zotero-clients">Connecting Zotero clients<a class="headerlink" href="#connecting-zotero-clients" title="Permanent link">&para;</a></h2>
+<p>Each user connects an unmodified Zotero Desktop installation once. The
+pilot needs no build, no fork and no client patch:</p>
+<ol>
+<li>In <strong>Settings, Advanced, Config Editor</strong>, set two preferences:
+   <code>extensions.zotero.api.url = https://&lt;server&gt;/</code> (the trailing slash
+   matters) and <code>extensions.zotero.streaming.url = wss://&lt;server&gt;/stream</code>,
+   then restart Zotero. Both are needed unless streaming is disabled
+   outright. The API preference does not redirect the streaming connection,
+   and a client that keeps the built-in zotero.org streaming endpoint may
+   send the altero API key to zotero.org, which rejects it but may log it. A
+   distributed package that sets both preferences,
+   described below, closes this trap.</li>
+<li>In <strong>Settings, Sync, Link Account</strong>, the client asks the server for a
+   login session, opens the server's browser page, and the user signs in
+   through their own institution via SURFconext and approves the
+   client. Approval always asks for a fresh proof of identity, so an
+   institutional sign-in gets a "confirm with provider" step rather than
+   reusing an existing browser session. The client receives an API key that
+   stays valid until it is revoked.</li>
+</ol>
+<p>A desktop profile that has synced with zotero.org carries its old numeric
+account id and will not silently link to a different account. Linking is
+refused and the message names the id. An administrator then creates the
+account under that id with one command in the server shell, which is also
+the documented path for moving a personal library from zotero.org.
+Attachment files can stay on an institutional WebDAV server, which stores
+files using the WebDAV web standard, or be moved into the national server.
+Group libraries always carry their files through the server. The official
+iOS and Android applications compile the zotero.org hosts into the binary
+and cannot be redirected by settings, so they need a patched build, as
+discussed below. The pilot is desktop-first.</p>
+<h3 id="distributing-a-pre-configured-client">Distributing a pre-configured client<a class="headerlink" href="#distributing-a-pre-configured-client" title="Permanent link">&para;</a></h3>
+<p>The manual steps above are one-time, but a sector service should not ask
+100,000 people to edit a config editor. The table below compares the two
+ways to remove them:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Companion extension</th>
+<th>Patched full build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What SURF ships</td>
+<td>Official Zotero installer plus a small plugin, or the plugin alone pushed by institutions</td>
+<td>Installers built from the official client repository with a preferences patch</td>
+</tr>
+<tr>
+<td>User steps</td>
+<td>Install Zotero, install or receive the plugin</td>
+<td>Install one download</td>
+</tr>
+<tr>
+<td>Survives official client updates</td>
+<td>Yes; the plugin re-asserts the preferences at startup</td>
+<td>No; each client release needs a rebuild and its own update channel</td>
+</tr>
+<tr>
+<td>Build effort</td>
+<td>Small: one plugin, tested against each pinned desktop release</td>
+<td>Large: per-platform build, macOS notarization, Windows code signing, update infrastructure</td>
+</tr>
+<tr>
+<td>Mobile apps</td>
+<td>No</td>
+<td>Yes, with the same pipeline applied to the mobile apps</td>
+</tr>
+<tr>
+<td>Exit path</td>
+<td>Uninstalling the plugin restores stock behavior</td>
+<td>Users switch back to official downloads</td>
+</tr>
+</tbody>
+</table>
+<p>The companion extension is the recommended first step. Zotero loads
+bootstrap plugins, which are add-on programs that start with the client. The
+compatibility harness itself installs one in every test profile. A plugin of
+a few hundred lines can set both preferences as the sign-in flow expects,
+re-assert them after client updates, and stop on demand. "Zotero from SURF"
+can then mean the official
+installer plus one plugin file, distributed from a SURF download page or
+pushed by institutional IT the way managed browser extensions already are.</p>
+<p>The patched full build is the heavier option. SURF's build system checks
+out the official client repository at a pinned release tag, applies a patch
+that defaults both preferences to the national server, and publishes signed
+installers. It gives users an out-of-the-box client, and the same pipeline
+applied to the mobile repositories is the only route to official mobile
+apps on the national server. Its costs are operational, not technical. SURF
+must rebuild on every client security release, run an update channel
+because a renamed build cannot use Zotero's official updates, and label the
+distribution clearly so the Zotero name and trademarks are respected. The
+pilot should run on the extension. The case for full builds, desktop first
+and mobile second, is a decision the pilot evidence should inform.</p>
+<h2 id="what-it-needs">What it needs<a class="headerlink" href="#what-it-needs" title="Permanent link">&para;</a></h2>
+<p>Planning figures: Dutch higher education has about one million students and
+roughly 100,000 to 150,000 staff. Confirm the exact numbers with UNL, the
+Vereniging Hogescholen and SURF when drafting the final proposal. Most of those
+people never need the server. By rough estimate, half of all students never
+upload an attachment and a quarter only use group libraries, and the FTE and
+student counts include many support staff and researchers who hardly use
+reference management. The scenarios below therefore assume 50 MB of attachments per
+active user on average, treated as an upper limit for the first estimate, and
+adjusted from pilot usage data once real numbers exist. Deduplication
+reinforces the estimate. The server stores each file once per digest, which
+is a checksum of the file's content. The PDF a supervisor and ten PhD
+students all hold is on disk once. The database holds metadata only and
+stays small even compared with the modest attachment store.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Active users</th>
+<th>Attachments</th>
+<th>Database</th>
+<th>Application</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pilot</td>
+<td>2,000</td>
+<td>100 GB</td>
+<td>Under 2 GB</td>
+<td>1 node, 2 vCPU, 4 GB</td>
+<td>2 vCPU, 8 GB</td>
+</tr>
+<tr>
+<td>Early production</td>
+<td>25,000</td>
+<td>1.3 TB</td>
+<td>10 to 20 GB</td>
+<td>2 nodes, 4 vCPU, 8 GB each</td>
+<td>4 to 8 vCPU, 32 GB, fast disk</td>
+</tr>
+<tr>
+<td>National</td>
+<td>100,000</td>
+<td>5 TB</td>
+<td>Around 50 GB</td>
+<td>3 to 4 nodes behind a load balancer</td>
+<td>8 to 16 vCPU, 64 GB</td>
+</tr>
+</tbody>
+</table>
+<p>The numbers are credible because the application is measured at about 125 MB
+of memory when idle, and attachments are stored once per file digest so
+shared PDFs are not duplicated. The database only holds metadata. The
+attachment directory must stay on a block-backed filesystem or an NFS mount,
+with backups going to object storage, because object-storage filesystem
+mounts implement rename as a copy followed by a delete, and the server will
+not fall back to copying.</p>
+<h2 id="what-it-costs">What it costs<a class="headerlink" href="#what-it-costs" title="Permanent link">&para;</a></h2>
+<p>Indicative only. Infrastructure is priced at market rates: small virtual
+machines plus bulk attachment storage at 3 to 10 euro per terabyte per month.
+At 50 MB per active user, the storage cost is negligible and the virtual
+machines dominate the infrastructure cost. Staff effort is stated as
+approximate FTE and left unpriced. SURF's own internal rates determine that
+line.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Infrastructure per year</th>
+<th>Staff (approximate FTE)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pilot, 2,000 users</td>
+<td>1,500 to 3,000 euro</td>
+<td>0.10 to 0.15</td>
+</tr>
+<tr>
+<td>Early production, 25,000 users</td>
+<td>2,000 to 6,500 euro</td>
+<td>0.15 to 0.25</td>
+</tr>
+<tr>
+<td>National, 100,000 users</td>
+<td>10,000 to 20,000 euro</td>
+<td>0.25 to 0.40</td>
+</tr>
+</tbody>
+</table>
+<p>The comparison comes from the status quo. The University of Twente, the
+originator of this proposal, already pays about 5,000 euro per year for a
+Zotero institution subscription with unlimited storage, covering roughly
+5,000 FTE and 10,000 students. Scaled by
+addressable population to the whole sector, about 75 times larger, the total
+is roughly 350,000 to 400,000 euro per year. A shared national server
+at 100,000 active users needs 10,000 to 20,000 euro per year of
+infrastructure, roughly 200 to 400 euro per institution per year across the
+sector's roughly fifty institutions, plus 0.25 to 0.40 FTE of staff time. It
+adds what the subscription does not offer. The data stays in the country,
+and sign-in runs through SURFconext. The comparison holds whatever internal
+rate SURF applies to that staff line, because the effort is a fraction of one
+person's time. The pilot is cheap in absolute terms and produces the evidence
+needed for the national decision.</p>
+<h2 id="maturity-and-risks">Maturity and risks<a class="headerlink" href="#maturity-and-risks" title="Permanent link">&para;</a></h2>
+<p>altero is at release 1.0.0-beta.2. Two real Zotero profiles passed 47 scenario
+and database combinations across SQLite and PostgreSQL, covering 594 phases of
+desktop synchronization, and the project documents what is deliberately not
+implemented. The warnings relevant to this proposal:</p>
+<ul>
+<li><strong>Treat the pilot as a pilot.</strong> Keep backups and keep zotero.org or local
+  copies available during the pilot. Do not migrate irreplaceable libraries
+  until the pilot report is positive.</li>
+<li><strong>Mobile.</strong> The official Zotero iOS and Android applications have the server
+  address compiled in and cannot point at another server. Desktop is the
+  supported platform. Mobile needs a custom build, which the project supports
+  but does not distribute.</li>
+<li><strong>Maintainer capacity.</strong> altero currently depends on a small team of
+  maintainers. The license and public source remove the vendor part of that
+  risk, and SURF operating the service is the kind of deployment that widens
+  the contributor base.</li>
+<li><strong>Agreements.</strong> SURF acts as processor, institutions as controllers, so a
+  data processing agreement and a retention policy are part of the pilot
+  setup. The SURFconext client id must stay fixed once issued, because the
+  user identifiers SURF issues are tied to it.</li>
+</ul>
+<h2 id="recommended-next-steps">Recommended next steps<a class="headerlink" href="#recommended-next-steps" title="Permanent link">&para;</a></h2>
+<ol>
+<li>SURF holds an intake meeting with the altero maintainer and evaluates this
+   proposal and the SSO analysis.</li>
+<li>SURF registers the service in the SURFconext test environment, and one or
+   two institutions run a pilot for one semester with real libraries and a
+   support arrangement as described above.</li>
+<li>The pilot report decides on general availability: measured sync reliability,
+   real support load, storage growth and user satisfaction.</li>
+</ol>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://altero.run/latest/motivation/">Why altero exists</a> and the
+  <a href="https://altero.run/latest/status/">implementation status</a></li>
+<li><a href="https://altero.run/latest/clients/">Connecting a Zotero client</a>, the
+  client documentation this section summarizes</li>
+<li><a href="https://github.com/zotero/zotero">Zotero client source repository</a> and
+  <a href="https://github.com/zotero/dataserver">dataserver source repository</a>,
+  both AGPL-3.0</li>
+<li><a href="https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128909841/OpenID+Connect+reference">SURFconext OpenID Connect reference</a>
+  and <a href="https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128910038/Connect+to+SURFconext+in+5+Steps">connecting in five steps</a></li>
+<li><a href="https://www.zotero.org/storage/">Zotero storage pricing</a> and the
+  <a href="https://www.zotero.org/support/storage_institutions_faq">institution storage FAQ</a></li>
+<li><a href="https://www.hawaii.edu/sitelic/endnote/endnoteform.pdf">EndNote site license order form, University of Hawaiʻi</a>,
+  the source of the $110 per seat per year figure</li>
+<li><a href="https://www.utwente.nl/onderwijs/student-services/actueel/nieuws/2025/11/560478/endnote-licentie-eindigt-op-31-december-2025">Twente ends its EndNote license and moves to Zotero</a></li>
+<li><a href="https://www.surfspot.nl/endnote-2025-radboud-universiteit.html">Radboud's EndNote 2025 on SURFspot</a></li>
+<li><a href="https://www.eur.nl/nieuws/refworks-wordt-endnote-fusion">RefWorks becomes EndNote Fusion, Erasmus University Rotterdam</a></li>
+<li><a href="https://www.rug.nl/library/news/251030-refworks-ends-december-2025">RefWorks ends in December 2025, University of Groningen</a></li>
+<li><a href="https://www.uu.nl/en/news/transfer-your-refworks-data-before-1-january">Transfer your RefWorks data before 1 January, Utrecht University</a></li>
+<li><a href="https://uba.uva.nl/en/content/news/2025/05/access-to-refworks-ends-on-30-june.html">Access to RefWorks ends on 30 June, University of Amsterdam</a></li>
+<li><a href="https://avans.libguides.com/blogs/Xplora-Nieuws/van-refworks-naar-mendeley">From RefWorks to Mendeley, Avans Hogeschool</a></li>
+<li><a href="https://biblioarchive.blog/2025/03/05/liste-citavi-nutzung-an-hochschulen/">List of Citavi use at higher education institutions, Bibhub</a>,
+  covering German institutions</li>
+<li><a href="https://www.utwente.nl/en/lisa-library-news/2024/12/29937/discontinuation-mendeley-institutional-license">Mendeley institutional license discontinuation, University of Twente</a></li>
+<li><a href="https://www.libs.uga.edu/refworks-discontinued">RefWorks access discontinuing, University of Georgia</a>,
+  including the 120-day account purge after license end</li>
+<li><a href="https://endnote.com/fusion/">EndNote Fusion</a>, Clarivate's successor product</li>
+<li><a href="https://paperpile.com/pricing/">Paperpile pricing</a> and
+  <a href="https://paperpile.com/sites/">site licenses</a>; its
+  <a href="https://paperpile.com/ios-and-android/">iOS and Android apps</a> are official</li>
+<li><a href="https://blog.mendeley.com/2021/03/11/mendeley-refocusing-announcement-mobile-app-retirement/">Mendeley mobile app retirement</a></li>
+<li><a href="https://bibliothek.htwk-leipzig.de/en/recherche/literatur-verwalten/citavi-cloud">Citavi cloud privacy notice, HTWK Leipzig</a>,
+  restricting personal and confidential data in the Citavi cloud</li>
+<li><a href="https://leanlibrary.com/sciwheel-is-becoming-lean-library-workspace/">Sciwheel is becoming Lean Library Workspace</a></li>
+<li><a href="https://github.com/zotero/dataserver/issues/105">Self-hosting documentation request, zotero/dataserver issue 105</a>,
+  the state of dataserver self-hosting</li>
+<li><a href="https://www.zotero.org/support/sync">Zotero synchronization overview</a>,
+  the basis for the WebDAV and group-library comparison</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Erich Seifert &middot; AGPL-3.0-or-later
+    </div>
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/eseifert/altero" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.action.edit","content.code.annotate","content.code.copy","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.tabs","navigation.top","navigation.tracking","search.highlight","toc.follow"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"alias":true,"default":"latest","provider":"mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.49251538.min.js"></script>
+      
+    
+  </body>
+</html>
