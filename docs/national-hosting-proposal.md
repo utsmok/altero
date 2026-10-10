@@ -45,9 +45,9 @@ altero already supports that sign-in method.
   quotas, pricing and terms. A group library no longer draws on the personal
   quota of whichever member owns the group.
 - **The market is churning anyway.** The Dutch university RefWorks licensees
-  below are all leaving the product, institutional Mendeley licenses ended at
+  below have all left the product, institutional Mendeley licenses ended at
   several universities in 2024, Twente has dropped two reference managers in
-  two years, and Twente's EndNote agreement ends in December 2025. Every one
+  two years, and Twente's EndNote agreement ended in December 2025. Every one
   of those migrations is already being paid for; this proposal changes where
   they land, not whether they happen.
 - **Open source.** The server is AGPL-3.0, the client is open source, and
@@ -83,8 +83,9 @@ left standing where it does not.
    zotero.org's streaming endpoint and may send the altero API key there.
    *Response:* the compatibility matrix pins desktop releases and runs
    acceptance scenarios with real client profiles before any deployment, and
-   a SURF-distributed client package sets both preferences so the trap never
-   fires. That reduces the risk to small; it does not reach zero, and this is
+   the SURF-distributed client package described below would set both
+   preferences so the trap never fires, reducing the risk to small. It does
+   not reach zero, and this is
    the strongest technical argument against the project.
 3. **Official mobile apps cannot connect at all.** The iOS and Android
    applications compile the zotero.org hosts into the binary and have no
@@ -98,14 +99,16 @@ left standing where it does not.
    fraction of one FTE, but the governance question is real and is SURF's to
    answer, not the software's.
 5. **Migration is not free.** A desktop profile that has synced with
-   zotero.org carries its old numeric account id and refuses to relink to a
-   new account; the server must adopt that id, and attachments living in
-   institutional WebDAV need a deliberate full re-upload step. Users who keep
+   zotero.org carries its old numeric account id, and the server refuses to
+   hand it a key for a different account; an account with that id must be
+   created on the server, and attachments move off institutional WebDAV only
+   through a deliberate full re-upload step. Users who keep
    both a zotero.org account and a new one risk split libraries. *Response:*
    tooling and a documented procedure exist, and onboarding happens
    institution by institution, not all at once.
 6. **Nothing has run at national scale.** The desktop evidence covers
-   hundreds of acceptance scenarios on pilot-sized libraries; no load test
+   594 acceptance phases across 47 scenario and database combinations, on
+   pilot-sized libraries; no load test
    has exercised 25,000 or 100,000 concurrent users, and the sizing in this
    document is arithmetic, not measurement. *Response:* the pilot phase
    exists to replace arithmetic with evidence before any national
@@ -200,14 +203,14 @@ What the institution runs:
 
 Where each product is already used in the Netherlands, and who to ask for
 first-hand experience and prices. The Dutch university RefWorks licensees below
-are all leaving the product, Twente has now dropped two reference managers in
+have all left the product, Twente has now dropped two reference managers in
 two years, and the replacements are Zotero, Mendeley or Clarivate products.
 
 | Product | Known use in the Netherlands | Where to get more detail |
 |---|---|---|
 | Zotero, client | Guides and support at nearly every university library, including Utrecht, Leiden, Amsterdam and Twente | The libraries' information specialists |
 | Zotero, institution storage | The University of Twente, the originator of this proposal: a Zotero Institution subscription at about 5,000 euro per year covering roughly 5,000 FTE and 10,000 students, and a campus-wide license running since September 2025 with unlimited storage for @utwente.nl addresses | zotero.org storage contact; Twente's library |
-| EndNote | Campus licenses at Leiden, Radboud, Maastricht and Utrecht; Radboud's version is distributed through SURFspot. Twente ends its license on December 31, 2025 | The libraries; SURFspot for member pricing; Clarivate sales |
+| EndNote | Campus licenses at Leiden, Radboud, Maastricht and Utrecht; Radboud's version is distributed through SURFspot. Twente ended its license on December 31, 2025 | The libraries; SURFspot for member pricing; Clarivate sales |
 | EndNote Fusion | Erasmus University Rotterdam moved its RefWorks users to Fusion in October 2026 | The EUR library; Clarivate sales |
 | Mendeley | Twente's institutional license ended in December 2024. Avans moved its users from RefWorks to Mendeley | Twente's library; Avans Xplora; Elsevier support |
 | RefWorks | Groningen ended it in December 2025, Utrecht required data export before January, Amsterdam ended access on June 30, 2025, and Erasmus moved to Fusion | The four libraries; Clarivate |
@@ -272,10 +275,13 @@ handles everything server-side:
 | National service | Most of the sector, 50,000 or more users | 0.25 to 0.4 FTE | The same, plus tier 2 support coordination and longer-term capacity planning |
 
 Onboarding an institution is mostly automatic. SURF connects its identity
-provider, and users sign in and get an account on first use. When someone
-leaves an institution, the server notices the next time they sign in and
-suspends the account, which also blocks the desktop client, while keeping the
-data for reinstatement or removal under the retention policy.
+provider, and users sign in and get an account on first use, once automatic
+account creation is turned on for the provider. When someone leaves an
+institution, the server notices on their next sign-in, if the provider is
+configured to require an institutional claim, and suspends the account, which
+also blocks the desktop client, while keeping the data for reinstatement or
+removal under the retention policy. Someone who never signs in again is not
+caught automatically; an administrator handles that case instead.
 
 ## Connecting Zotero clients
 
@@ -285,10 +291,11 @@ no fork and no client patch is needed for the pilot:
 1. In **Settings, Advanced, Config Editor**, set two preferences:
    `extensions.zotero.api.url = https://<server>/` (the trailing slash
    matters) and `extensions.zotero.streaming.url = wss://<server>/stream`,
-   then restart Zotero. Both are needed: the API preference does not redirect
-   the streaming connection, and a client that keeps the built-in zotero.org
-   streaming endpoint may send the altero API key to zotero.org, which
-   rejects it but logs it. A distributed package that sets both preferences,
+   then restart Zotero. Both are needed, unless streaming is disabled
+   outright: the API preference does not redirect the streaming connection,
+   and a client that keeps the built-in zotero.org streaming endpoint may
+   send the altero API key to zotero.org, which rejects it but may log it. A
+   distributed package that sets both preferences,
    described below, closes this trap.
 2. In **Settings, Sync, Link Account**, the client asks the server for a
    login session, opens the server's browser page, and the user signs in
@@ -299,9 +306,11 @@ no fork and no client patch is needed for the pilot:
    stays valid until it is revoked.
 
 A desktop profile that has synced with zotero.org carries its old numeric
-account id and will not silently link to a different account; the server
-creates the account under that id, which is also the documented path for
-moving a personal library from zotero.org. Attachment files can stay on an
+account id and will not silently link to a different account; linking is
+refused and the message names the id, and an administrator then creates the
+account under that id with one command in the server shell, which is also the
+documented path for moving a personal library from zotero.org. Attachment
+files can stay on an
 institutional WebDAV server or be moved into the national server; group
 libraries always carry their files through the server. The official iOS and
 Android applications compile the zotero.org hosts into the binary and cannot
@@ -311,7 +320,7 @@ the pilot is desktop-first.
 ### Distributing a pre-configured client
 
 The manual steps above are one-time, but a sector service should not ask
-75,000 people to edit a config editor. Two ways to remove them:
+100,000 people to edit a config editor. Two ways to remove them:
 
 | | Companion extension | Patched full build |
 |---|---|---|
@@ -323,7 +332,8 @@ The manual steps above are one-time, but a sector service should not ask
 | Exit path | Uninstalling the plugin restores stock behavior | Users switch back to official downloads |
 
 The companion extension is the recommended first step. Zotero loads
-bootstrap plugins, and a plugin of a few hundred lines can set both
+bootstrap plugins — the compatibility harness itself installs one in every
+test profile — and a plugin of a few hundred lines can set both
 preferences as the account-signing flow expects, re-assert them after client
 updates, and stop on demand. "Zotero from SURF" can then mean the official
 installer plus one plugin file, distributed from a SURF download page or
@@ -366,8 +376,9 @@ The numbers are credible because the application is measured at about 125 MB
 of memory when idle, and attachments are stored once per file digest so
 shared PDFs are not duplicated. The database only holds metadata. The
 attachment directory must stay on a block-backed filesystem or an NFS mount,
-with backups going to object storage, because the server refuses the
-copy-then-rename behavior of object-storage filesystem mounts.
+with backups going to object storage, because object-storage filesystem
+mounts implement rename as copy-then-delete and the server will not fall
+back to copying.
 
 ## What it costs
 
