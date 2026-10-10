@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "SURF Sync for Zotero",
+  "version": "0.1.0",
+  "description": "Points Zotero Desktop at the SURF-managed national sync server instead of zotero.org.",
+  "applications": {
+    "zotero": {
+      "id": "surf-sync@altero.invalid",
+      "update_url": "https://zotero.surf.nl/surf-sync-updates.json",
+      "strict_min_version": "10.0.5",
+      "strict_max_version": "10.*"
+    }
+  }
+}
