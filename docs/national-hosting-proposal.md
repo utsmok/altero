@@ -46,9 +46,9 @@ altero already supports that sign-in method.
   export is a core feature, so users and institutions are never locked
   in. Institutions can fix or extend the software instead of filing wishes
   with a vendor.
-- **Cost.** There are no per-seat licenses. The cost is staff time and one
-  small server environment, under one euro per active user per year at national
-  scale under the assumptions below.
+- **Cost.** There are no per-seat licenses. The cost is a fraction of one FTE
+  of staff time and one small server environment, with infrastructure between
+  10,000 and 20,000 euro per year at national scale.
 - **Continuity.** The desktop application keeps a complete local copy of every
   library, so users are protected even if the service stops. The service can be
   moved between infrastructures because both the client and the server are open
@@ -245,37 +245,32 @@ copy-then-rename behavior of object-storage filesystem mounts.
 
 ## What it costs
 
-Indicative only, to be refined with SURF rates. Assumptions. Staff time is
-priced at 90,000 euro per FTE per year, fully loaded. For orientation: a
-systems administrator in scale 10 of the CAO for Dutch universities earns
-about 52,000 to 80,000 euro gross per year, including the 8 percent holiday
-allowance and the 8.3 percent year-end payment; employer charges plus
-workspace and support overhead bring the fully loaded cost of one experienced
-FTE to roughly 90,000 euro. Bulk attachment storage is priced at 3 to 10 euro
-per terabyte per month. The staff rate dominates these totals, so a different
-salary agreement moves every scenario with it: each 10,000 euro of per-FTE
-rate shifts the national scenario by about 3,000 to 4,000 euro per year, and
-the ranking against the commercial alternatives does not change. At 50 MB per
-active user, the storage cost is negligible and the virtual machines dominate
-the infrastructure cost.
+Indicative only. Infrastructure is priced at market rates: small virtual
+machines plus bulk attachment storage at 3 to 10 euro per terabyte per month.
+At 50 MB per active user, the storage cost is negligible and the virtual
+machines dominate the infrastructure cost. Staff effort is stated as
+approximate FTE and left unpriced: SURF's own internal rates determine that
+line.
 
-| Scenario | Infrastructure per year | Staff per year | Total | Per active user per year |
-|---|---|---|---|---|
-| Pilot, 2,000 users | 1,500 to 3,000 euro | 9,000 to 14,000 euro | 10,500 to 17,000 euro | 5.25 to 8.50 euro |
-| Early production, 25,000 users | 2,000 to 6,500 euro | 14,000 to 23,000 euro | 16,000 to 29,500 euro | 0.64 to 1.18 euro |
-| National, 100,000 users | 10,000 to 20,000 euro | 23,000 to 36,000 euro | 33,000 to 56,000 euro | 0.33 to 0.56 euro |
+| Scenario | Infrastructure per year | Staff (approximate FTE) |
+|---|---|---|
+| Pilot, 2,000 users | 1,500 to 3,000 euro | 0.10 to 0.15 |
+| Early production, 25,000 users | 2,000 to 6,500 euro | 0.15 to 0.25 |
+| National, 100,000 users | 10,000 to 20,000 euro | 0.25 to 0.40 |
 
 The comparison comes from the status quo. The University of Twente, the
 originator of this proposal, already pays about 5,000 euro per year for a
 Zotero institution subscription with unlimited storage, covering roughly
 5,000 FTE and 10,000 students. Scaled by
 addressable population to the whole sector, about 75 times larger, that is
-roughly 350,000 to 400,000 euro per year in total. A shared national server at
-100,000 active users costs about a tenth of that, works out to roughly 650 to
-1,100 euro per institution per year across the sector's roughly fifty
-institutions, and adds what the subscription does not
-offer: the data stays in the country and sign-in runs through SURFconext. The
-pilot costs more per active user, which is normal, and buys the evidence
+roughly 350,000 to 400,000 euro per year in total. A shared national server
+at 100,000 active users needs 10,000 to 20,000 euro per year of
+infrastructure, roughly 200 to 400 euro per institution per year across the
+sector's roughly fifty institutions, plus 0.25 to 0.40 FTE of staff time. It
+adds what the subscription does not offer: the data stays in the country and
+sign-in runs through SURFconext. The comparison holds whatever internal rate
+SURF applies to that staff line, because the effort is a fraction of one
+person's time. The pilot is cheap in absolute terms and buys the evidence
 needed for the national decision.
 
 ## Maturity and risks
@@ -315,8 +310,6 @@ implemented. The warnings relevant to this proposal:
 
 - [Why altero exists](https://altero.run/latest/motivation/) and the
   [implementation status](https://altero.run/latest/status/)
-- [CAO Nederlandse Universiteiten salary scales](https://www.universiteitenvannederland.nl/salarisschalen),
-  Universiteiten van Nederland (basis for the staff-cost assumption)
 - [SURFconext OpenID Connect reference](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128909841/OpenID+Connect+reference)
   and [connecting in five steps](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128910038/Connect+to+SURFconext+in+5+Steps)
 - [Zotero storage pricing](https://www.zotero.org/storage/) and the
