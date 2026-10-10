@@ -245,10 +245,19 @@ copy-then-rename behavior of object-storage filesystem mounts.
 
 ## What it costs
 
-Indicative only, to be refined with SURF rates. Assumptions: 90,000 euro per
-FTE per year including overhead, and 3 to 10 euro per terabyte per month for
-bulk attachment storage. At 50 MB per active user, the storage cost is
-negligible and the virtual machines dominate the infrastructure cost.
+Indicative only, to be refined with SURF rates. Assumptions. Staff time is
+priced at 90,000 euro per FTE per year, fully loaded. For orientation: a
+systems administrator in scale 10 of the CAO for Dutch universities earns
+about 52,000 to 80,000 euro gross per year, including the 8 percent holiday
+allowance and the 8.3 percent year-end payment; employer charges plus
+workspace and support overhead bring the fully loaded cost of one experienced
+FTE to roughly 90,000 euro. Bulk attachment storage is priced at 3 to 10 euro
+per terabyte per month. The staff rate dominates these totals, so a different
+salary agreement moves every scenario with it: each 10,000 euro of per-FTE
+rate shifts the national scenario by about 3,000 to 4,000 euro per year, and
+the ranking against the commercial alternatives does not change. At 50 MB per
+active user, the storage cost is negligible and the virtual machines dominate
+the infrastructure cost.
 
 | Scenario | Infrastructure per year | Staff per year | Total | Per active user per year |
 |---|---|---|---|---|
@@ -306,6 +315,8 @@ implemented. The warnings relevant to this proposal:
 
 - [Why altero exists](https://altero.run/latest/motivation/) and the
   [implementation status](https://altero.run/latest/status/)
+- [CAO Nederlandse Universiteiten salary scales](https://www.universiteitenvannederland.nl/salarisschalen),
+  Universiteiten van Nederland (basis for the staff-cost assumption)
 - [SURFconext OpenID Connect reference](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128909841/OpenID+Connect+reference)
   and [connecting in five steps](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128910038/Connect+to+SURFconext+in+5+Steps)
 - [Zotero storage pricing](https://www.zotero.org/storage/) and the
