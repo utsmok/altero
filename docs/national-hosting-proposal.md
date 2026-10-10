@@ -97,6 +97,28 @@ individually where no public figure exists.
 | ReadCube and Papers (Digital Science) | Individual and institutional | United States | Closed | Niche in the Netherlands |
 | JabRef | Free | No central service | Open source | BibTeX-centered, no managed group synchronization, so it solves a different problem |
 
+### Known use in Dutch institutions
+
+Where each product already has a Dutch footprint, and who to ask for
+first-hand experience and prices. The commercial pattern here is not subtle:
+every Dutch RefWorks licensee is leaving the product, Twente has now dropped
+two reference managers in two years, and the replacements are either Zotero or
+Clarivate products.
+
+| Product | Known use in the Netherlands | Where to get more detail |
+|---|---|---|
+| Zotero, client | Guides and support at nearly every university library, including Utrecht, Leiden, Amsterdam and Twente | The libraries' information specialists |
+| Zotero, institution storage | Not public. At least two universities: the originator of this proposal (about 5,000 euro per year for roughly 5,000 FTE and 10,000 students) and Twente, whose campus-wide license has run since September 2025 with unlimited storage for institutional addresses | zotero.org storage contact; the two libraries directly |
+| EndNote | Campus licenses at Leiden, Radboud, Maastricht and Utrecht; Radboud's version is distributed through SURFspot. Twente ends its license on December 31, 2025 | The libraries; SURFspot for member pricing; Clarivate sales |
+| EndNote Fusion | Erasmus University Rotterdam is migrating its RefWorks users to Fusion | The EUR library; Clarivate sales |
+| Mendeley | Twente's institutional license ended in December 2024. Avans moved its users from RefWorks to Mendeley | Twente's library; Avans Xplora; Elsevier support |
+| RefWorks | Groningen ended it in December 2025, Utrecht required data export before January, Amsterdam ended access on June 30, 2025, and Erasmus is moving to Fusion | The four libraries; Clarivate |
+| Citavi | No public Dutch campus license found; the published adoption list covers German institutions | Lumivero or its reseller Alfasoft |
+| Paperpile | No public Dutch institutional licensees found | Paperpile sales |
+| Lean Library Workspace, formerly Sciwheel | No public Dutch licensees found | Technology from Sage |
+| ReadCube and Papers | No public Dutch licensees found | Digital Science |
+| JabRef, self-hosted dataserver, altero | No known institutional deployments in the Netherlands. altero has no production deployments anywhere yet, so a pilot would be the first | altero's GitHub discussions |
+
 None of this changes the recommendation, for two reasons. First,
 interoperability: Zotero Desktop, its browser connector, its word processor
 plugins and its catalog of citation styles form one ecosystem, and only
@@ -252,6 +274,15 @@ implemented. The warnings that matter for this proposal:
   [institution storage FAQ](https://www.zotero.org/support/storage_institutions_faq)
 - [EndNote site license order form, University of Hawaiʻi](https://www.hawaii.edu/sitelic/endnote/endnoteform.pdf),
   the source of the $110 per seat per year figure
+- [Twente ends its EndNote license and moves to Zotero](https://www.utwente.nl/onderwijs/student-services/actueel/nieuws/2025/11/560478/endnote-licentie-eindigt-op-31-december-2025)
+- [Radboud's EndNote 2025 on SURFspot](https://www.surfspot.nl/endnote-2025-radboud-universiteit.html)
+- [RefWorks becomes EndNote Fusion, Erasmus University Rotterdam](https://www.eur.nl/nieuws/refworks-wordt-endnote-fusion)
+- [RefWorks ends in December 2025, University of Groningen](https://www.rug.nl/library/news/251030-refworks-ends-december-2025)
+- [Transfer your RefWorks data before 1 January, Utrecht University](https://www.uu.nl/en/news/transfer-your-refworks-data-before-1-january)
+- [Access to RefWorks ends on 30 June, University of Amsterdam](https://uba.uva.nl/en/content/news/2025/05/access-to-refworks-ends-on-30-june.html)
+- [From RefWorks to Mendeley, Avans Hogeschool](https://avans.libguides.com/blogs/Xplora-Nieuws/van-refworks-naar-mendeley)
+- [List of Citavi use at higher education institutions, Bibhub](https://biblioarchive.blog/2025/03/05/liste-citavi-nutzung-an-hochschulen/),
+  covering German institutions
 - [Mendeley institutional license discontinuation, University of Twente](https://www.utwente.nl/en/lisa-library-news/2024/12/29937/discontinuation-mendeley-institutional-license)
 - [RefWorks access discontinuing, University of Georgia](https://www.libs.uga.edu/refworks-discontinued),
   including the 120-day account purge after license end
