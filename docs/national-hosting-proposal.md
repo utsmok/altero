@@ -32,7 +32,9 @@ attachments, notes, annotations, full-text search and group libraries. One
 server can serve all institutions, because users sign in through SURFconext and
 altero already supports that sign-in method.
 
-## Why this is worth doing
+## The case for and against
+
+### The case for
 
 - **Privacy and the GDPR.** Library data, including PDFs and notes, stays on
   infrastructure in the Netherlands under EU law. Sign-in releases the minimum
@@ -42,6 +44,12 @@ altero already supports that sign-in method.
 - **Autonomy.** Institutions stop depending on one American service's storage
   quotas, pricing and terms. A group library no longer draws on the personal
   quota of whichever member owns the group.
+- **The market is churning anyway.** The Dutch university RefWorks licensees
+  below are all leaving the product, institutional Mendeley licenses ended at
+  several universities in 2024, Twente has dropped two reference managers in
+  two years, and Twente's EndNote agreement ends in December 2025. Every one
+  of those migrations is already being paid for; this proposal changes where
+  they land, not whether they happen.
 - **Open source.** The server is AGPL-3.0, the client is open source, and
   export is a core feature, so users and institutions are never locked
   in. Institutions can fix or extend the software instead of filing wishes
@@ -50,9 +58,63 @@ altero already supports that sign-in method.
   of staff time and one small server environment, with infrastructure between
   10,000 and 20,000 euro per year at national scale.
 - **Continuity.** The desktop application keeps a complete local copy of every
-  library, so users are protected even if the service stops. The service can be
-  moved between infrastructures because both the client and the server are open
-  source.
+  library, so users are protected even if the service stops. The service can
+  be moved between infrastructures because both the client and the server are
+  open source.
+
+### The devil's advocate case
+
+These are the honest arguments against, with a response where one exists and
+left standing where it does not.
+
+1. **zotero.org already does this job.** It is free below 300 MB, run by a
+   nonprofit, and its unlimited institution subscription is demonstrably
+   affordable, Twente's costs about 5,000 euro per year. If an institution
+   does not care where its data lives or who can suspend accounts, zotero.org
+   is the cheaper and less risky choice, and this proposal duplicates it.
+   *Response:* the argument rests on residency, group libraries with files,
+   sign-in integration and account lifecycle; institutions indifferent to all
+   four should indeed stay where they are.
+2. **The configuration surface is unsupported.** The Zotero project does not
+   support third-party sync servers. The two preferences that redirect a
+   desktop client work today, but they are not a documented integration
+   surface, and a desktop release could change their behavior. The streaming
+   preference has a real trap: if it is not set, the client keeps talking to
+   zotero.org's streaming endpoint and may send the altero API key there.
+   *Response:* the compatibility matrix pins desktop releases and runs
+   acceptance scenarios with real client profiles before any deployment, and
+   a SURF-distributed client package sets both preferences so the trap never
+   fires. That reduces the risk to small; it does not reach zero, and this is
+   the strongest technical argument against the project.
+3. **Official mobile apps cannot connect at all.** The iOS and Android
+   applications compile the zotero.org hosts into the binary and have no
+   setting for another server, so connecting them means patched builds that
+   nobody official publishes. Until such builds exist, mobile users are
+   second-class on the national server. *This objection stands today.*
+4. **Key-person and project risk.** altero is a young project at release
+   1.0.0-beta.2 with a small team, and a national service would make it
+   load-bearing infrastructure. *Response:* the AGPL license means SURF can
+   take over the code without permission, and operating it is estimated at a
+   fraction of one FTE, but the governance question is real and is SURF's to
+   answer, not the software's.
+5. **Migration is not free.** A desktop profile that has synced with
+   zotero.org carries its old numeric account id and refuses to relink to a
+   new account; the server must adopt that id, and attachments living in
+   institutional WebDAV need a deliberate full re-upload step. Users who keep
+   both a zotero.org account and a new one risk split libraries. *Response:*
+   tooling and a documented procedure exist, and onboarding happens
+   institution by institution, not all at once.
+6. **Nothing has run at national scale.** The desktop evidence covers
+   hundreds of acceptance scenarios on pilot-sized libraries; no load test
+   has exercised 25,000 or 100,000 concurrent users, and the sizing in this
+   document is arithmetic, not measurement. *Response:* the pilot phase
+   exists to replace arithmetic with evidence before any national
+   commitment.
+7. **Governance is the hard part.** A sector service needs retention policy,
+   an uptime commitment, incident response and multi-year funding. Those
+   decisions, not the software, determine whether this service earns trust,
+   and open source does not write policy. *This objection stands, and it is
+   the part SURF actually signs up for.*
 
 ### How the alternatives compare
 
@@ -215,6 +277,70 @@ leaves an institution, the server notices the next time they sign in and
 suspends the account, which also blocks the desktop client, while keeping the
 data for reinstatement or removal under the retention policy.
 
+## Connecting Zotero clients
+
+Each user connects an unmodified Zotero Desktop installation once. No build,
+no fork and no client patch is needed for the pilot:
+
+1. In **Settings, Advanced, Config Editor**, set two preferences:
+   `extensions.zotero.api.url = https://<server>/` (the trailing slash
+   matters) and `extensions.zotero.streaming.url = wss://<server>/stream`,
+   then restart Zotero. Both are needed: the API preference does not redirect
+   the streaming connection, and a client that keeps the built-in zotero.org
+   streaming endpoint may send the altero API key to zotero.org, which
+   rejects it but logs it. A distributed package that sets both preferences,
+   described below, closes this trap.
+2. In **Settings, Sync, Link Account**, the client asks the server for a
+   login session, opens the server's browser page, and the user signs in
+   through their own institution via SURFconext and approves the
+   client. Approval always asks for a fresh proof of identity, so an
+   institutional sign-in gets a "confirm with provider" step rather than
+   riding an existing browser session. The client receives an API key that
+   stays valid until it is revoked.
+
+A desktop profile that has synced with zotero.org carries its old numeric
+account id and will not silently link to a different account; the server
+creates the account under that id, which is also the documented path for
+moving a personal library from zotero.org. Attachment files can stay on an
+institutional WebDAV server or be moved into the national server; group
+libraries always carry their files through the server. The official iOS and
+Android applications compile the zotero.org hosts into the binary and cannot
+be redirected by settings, so they need a patched build, as discussed below;
+the pilot is desktop-first.
+
+### Distributing a pre-configured client
+
+The manual steps above are one-time, but a sector service should not ask
+75,000 people to edit a config editor. Two ways to remove them:
+
+| | Companion extension | Patched full build |
+|---|---|---|
+| What SURF ships | Official Zotero installer plus a small plugin, or the plugin alone pushed by institutions | Installers built from the official client repository with a preferences patch |
+| User steps | Install Zotero, install or receive the plugin | Install one download |
+| Survives official client updates | Yes; the plugin re-asserts the preferences at startup | No; each client release needs a rebuild and its own update channel |
+| Build effort | Small: one plugin, tested against each pinned desktop release | Large: per-platform build, macOS notarization, Windows code signing, update infrastructure |
+| Mobile apps | No | Yes, with the same pipeline applied to the mobile apps |
+| Exit path | Uninstalling the plugin restores stock behavior | Users switch back to official downloads |
+
+The companion extension is the recommended first step. Zotero loads
+bootstrap plugins, and a plugin of a few hundred lines can set both
+preferences as the account-signing flow expects, re-assert them after client
+updates, and stop on demand. "Zotero from SURF" can then mean the official
+installer plus one plugin file, distributed from a SURF download page or
+pushed by institutional IT the way managed browser extensions already are.
+
+The patched full build is the heavier instrument: SURF's build system checks
+out the official client repository at a pinned release tag, applies a patch
+that defaults both preferences to the national server, and publishes signed
+installers. It gives users a genuinely out-of-the-box client, and the same
+pipeline applied to the mobile repositories is the only route to official
+mobile apps on the national server. Its costs are operational, not technical:
+rebuilding on every client security release, running an update channel
+because a rebadged build cannot consume Zotero's official updates, and
+labeling the distribution clearly so the Zotero name and trademarks are
+respected. The pilot should run on the extension; the case for full builds,
+desktop first and mobile second, is a decision the pilot evidence informs.
+
 ## What it needs
 
 Planning figures: Dutch higher education has about one million students and
@@ -310,6 +436,11 @@ implemented. The warnings relevant to this proposal:
 
 - [Why altero exists](https://altero.run/latest/motivation/) and the
   [implementation status](https://altero.run/latest/status/)
+- [Connecting a Zotero client](https://altero.run/latest/clients/), the
+  client documentation this section summarizes
+- [Zotero client source repository](https://github.com/zotero/zotero) and
+  [dataserver source repository](https://github.com/zotero/dataserver),
+  both AGPL-3.0
 - [SURFconext OpenID Connect reference](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128909841/OpenID+Connect+reference)
   and [connecting in five steps](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128910038/Connect+to+SURFconext+in+5+Steps)
 - [Zotero storage pricing](https://www.zotero.org/storage/) and the
