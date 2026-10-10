@@ -12,7 +12,8 @@ universities and hogescholen. Users keep the Zotero Desktop application they
 already use, sign in through their own institution via SURFconext, and keep
 their library data on Dutch infrastructure. altero is free software under the
 AGPL-3.0 license, so there are no license fees. The realistic costs are one
-small server landscape and 0.1 to 0.4 FTE of staff time, depending on scale.
+small server landscape and 0.1 to 0.4 FTE of staff time, depending on scale,
+and a few terabytes of attachment storage even at national size.
 A pilot with one or two institutions can start after a short technical
 preparation, and the SURFconext connection is configuration work because
 altero already implements it.
@@ -45,9 +46,9 @@ altero already supports that sign-in method.
   export is a first-class feature, so users and institutions are never locked
   in. Institutions can fix or extend the software instead of filing wishes
   with a vendor.
-- **Cost.** There are no per-seat licenses. The cost is storage and staff time,
-  which at national scale works out to roughly one euro per active user per
-  year under the assumptions below.
+- **Cost.** There are no per-seat licenses. The cost is staff time and one
+  small server landscape, under one euro per active user per year at national
+  scale under the assumptions below.
 - **Continuity.** The desktop application keeps a complete local copy of every
   library, so users are protected even if the service stops. The service can be
   moved between infrastructures because both the client and the server are open
@@ -62,7 +63,7 @@ altero already supports that sign-in method.
 | Institutional sign-in | No | No | No | No | Yes, via SURFconext |
 | Free storage | 300 MB | Unlimited on institution plans | Product includes limited online storage | Limited free storage | Sized by the institutions |
 | Group libraries | Draw on the owner's quota | Unlimited | Limited collaboration features | Limited self-hosting and control | Full group libraries, no quota |
-| Cost model | Free | Individual plans at $20 to $120 per user per year, or an institution plan priced per FTE | Recurring license fees | Free with commercial owner | Storage plus 0.1 to 0.4 FTE |
+| Cost model | Free | Individual plans at $20 to $120 per user per year, or an institution plan, about 5,000 euro per year for a university with 15,000 students and staff | Recurring license fees | Free with commercial owner | Staff time plus a small server landscape |
 | Self-hosting | Files only, through WebDAV, and group libraries not at all | Same | No | No | The whole service |
 
 Two notes for fairness. First, zotero.org is run by a nonprofit, and its
@@ -114,17 +115,22 @@ data for reinstatement or removal under the retention policy.
 
 Planning figures: Dutch higher education has about one million students and
 roughly 100,000 to 150,000 staff. Confirm the exact numbers with UNL, the
-Vereniging Hogescholen and SURF when drafting the final proposal. Not everyone
-needs a server: most libraries fit in the free tier. The scenarios below assume
-1 GB of attachments per active user on average, which is generous for students
-and modest for research groups, and a database that stays small next to the
-attachments.
+Vereniging Hogescholen and SURF when drafting the final proposal. Most of those
+people never need the server. Roughly half of all students never upload an
+attachment, about a quarter only use group libraries, and the FTE and student
+counts include many support staff and researchers who hardly use reference
+management. The scenarios below therefore assume 50 MB of attachments per
+active user on average, treated as an upper limit for the first estimate, and
+refit from pilot telemetry once real numbers exist. Deduplication reinforces
+this: files are stored once per digest, so the PDF a supervisor and ten PhD
+students all hold is on disk once. The database holds metadata only and stays
+small next to even that modest attachment store.
 
 | Scenario | Active users | Attachments | Database | Application | PostgreSQL |
 |---|---|---|---|---|---|
-| Pilot | 2,000 | 2 TB | Under 2 GB | 1 node, 2 vCPU, 4 GB | 2 vCPU, 8 GB |
-| Early production | 25,000 | 25 TB | 10 to 20 GB | 2 nodes, 4 vCPU, 8 GB each | 4 to 8 vCPU, 32 GB, fast disk |
-| National | 100,000 | 100 TB | Around 50 GB | 3 to 4 nodes behind a load balancer | 8 to 16 vCPU, 64 GB |
+| Pilot | 2,000 | 100 GB | Under 2 GB | 1 node, 2 vCPU, 4 GB | 2 vCPU, 8 GB |
+| Early production | 25,000 | 1.3 TB | 10 to 20 GB | 2 nodes, 4 vCPU, 8 GB each | 4 to 8 vCPU, 32 GB, fast disk |
+| National | 100,000 | 5 TB | Around 50 GB | 3 to 4 nodes behind a load balancer | 8 to 16 vCPU, 64 GB |
 
 Context that makes these numbers credible: the application is measured at
 about 125 MB of memory when idle, attachments are stored once per file digest
@@ -137,20 +143,25 @@ copy-then-rename behavior of object-storage filesystem mounts.
 
 Indicative only, to be refined with SURF rates. Assumptions: 90,000 euro per
 FTE per year including overhead, and 3 to 10 euro per terabyte per month for
-bulk attachment storage.
+bulk attachment storage. At 50 MB per active user, storage is a rounding error
+and the virtual machines dominate the infrastructure cost.
 
 | Scenario | Infrastructure per year | Staff per year | Total | Per active user per year |
 |---|---|---|---|---|
-| Pilot, 2,000 users | 2,000 to 5,000 euro | 9,000 to 14,000 euro | 11,000 to 19,000 euro | 5 to 10 euro |
-| Early production, 25,000 users | 4,000 to 10,000 euro | 14,000 to 23,000 euro | 18,000 to 33,000 euro | 0.70 to 1.30 euro |
-| National, 100,000 users | 15,000 to 30,000 euro | 23,000 to 36,000 euro | 38,000 to 66,000 euro | 0.40 to 0.70 euro |
+| Pilot, 2,000 users | 1,500 to 3,000 euro | 9,000 to 14,000 euro | 10,500 to 17,000 euro | 5 to 8.50 euro |
+| Early production, 25,000 users | 2,000 to 6,500 euro | 14,000 to 23,000 euro | 16,000 to 29,500 euro | 0.65 to 1.20 euro |
+| National, 100,000 users | 10,000 to 20,000 euro | 23,000 to 36,000 euro | 33,000 to 56,000 euro | 0.35 to 0.55 euro |
 
-The comparison at the top gives the other side of the ledger: individual
-zotero.org unlimited storage costs $120 per heavy user per year, and an
-institution plan is priced per FTE across the whole institution. The national
-server is cheaper per served user at scale and keeps the data in the country.
-The pilot costs more per user, which is normal, and buys the evidence needed
-for the national decision.
+The honest comparison comes from the status quo. One Dutch university already
+pays about 5,000 euro per year for a Zotero institution subscription with
+unlimited storage, covering roughly 5,000 FTE and 10,000 students. Scaled by
+addressable population to the whole sector, about 75 times larger, that is
+roughly 350,000 to 400,000 euro per year in total. A shared national server at
+100,000 active users costs about a tenth of that, works out to roughly 600 to
+1,000 euro per institution per year, and adds what the subscription does not
+offer: the data stays in the country and sign-in runs through SURFconext. The
+pilot costs more per active user, which is normal, and buys the evidence
+needed for the national decision.
 
 ## Maturity and risks
 
