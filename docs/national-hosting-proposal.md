@@ -1,9 +1,11 @@
-# Proposal: a shared Zotero sync server for Dutch higher education
+# Proposal: a SURF-managed national Zotero server for Dutch higher education
 
-Draft proposal for SURF, universities and hogescholen, October 10, 2026.
-This document is fork-local research material and is not part of the altero
-documentation set. The technical SSO analysis it builds on is in
-[sso-surf.md](sso-surf.md).
+Samuel Mok, information specialist, Universiteit Twente
+([s.mok@utwente.nl](mailto:s.mok@utwente.nl)), October 10, 2026.
+
+Draft proposal for SURF, universities and hogescholen. This document is
+fork-local research material and is not part of the altero documentation set.
+The technical SSO analysis it builds on is in [sso-surf.md](sso-surf.md).
 
 ## Summary
 
