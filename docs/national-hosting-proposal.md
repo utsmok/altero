@@ -61,9 +61,9 @@ altero already supports that sign-in method.
 | Software | Open source client | Open source client | Commercial | Closed, owned by Elsevier | Open source client and server |
 | Where the data lives | United States | United States | United States (Clarivate) | United States (Elsevier) | Netherlands |
 | Institutional sign-in | No | No | No | No | Yes, via SURFconext |
-| Free storage | 300 MB | Unlimited on institution plans | Limited online storage included with the license | 2 GB personal and 100 MB shared since the institutional upgrade ended | Sized by the institutions |
+| Free storage | 300 MB | Unlimited on institution plans | Online storage included with the license | 2 GB personal and 100 MB shared | Sized by the institutions |
 | Group libraries | Draw on the owner's quota | Unlimited | Limited collaboration features | Private groups are capped and share 100 MB | Full group libraries, no quota |
-| Cost model | Free | Individual plans at $20 to $120 per user per year, or an institution plan, about 5,000 euro per year for a university with 15,000 students and staff | About $110 per seat per year in one public university program, campus-wide quotes on request | Free after the institutional edition was discontinued in 2024 | Staff time plus a small server landscape |
+| Cost model | Free | Individual plans at $20 to $120 per user per year, or an institution plan, about 5,000 euro per year for a university with 15,000 students and staff | About $110 per seat per year in one public university program, campus-wide quotes on request | Free; several universities ended their institutional licenses in 2024 | Staff time plus a small server landscape |
 | Self-hosting | Files only, through WebDAV, and group libraries not at all | Same | No | No | The whole service |
 
 Two notes for fairness. First, zotero.org is run by a nonprofit, and its
@@ -75,9 +75,9 @@ self-hosted option was missing, not because zotero.org serves users badly.
 EndNote and Mendeley show the two other models. EndNote is licensed per seat:
 one public university's site license program charges $110 per seat per year,
 and a campus-wide agreement is quoted individually by Clarivate. Mendeley
-shows what a closed institutional arrangement can cost later: Elsevier
-discontinued the Mendeley Institutional Edition in 2024, and at the University
-of Twente the institutional benefits ended, which dropped users to 2 GB of
+shows what a closed institutional arrangement can cost later:
+institutional Mendeley licenses ended at several universities in 2024,
+including the University of Twente's, which dropped users there to 2 GB of
 personal storage and 100 MB of shared storage. A service built on open source
 software has no equivalent risk, because the institutions hold the source code
 and can always move the data.
@@ -92,8 +92,8 @@ individually where no public figure exists.
 | RefWorks (Clarivate) | Campus subscription, quote-based | United States | Closed | Being retired; Clarivate purges accounts 120 days after a license ends, and steers users to EndNote Fusion |
 | EndNote and EndNote Fusion (Clarivate) | About $110 per seat per year in one public program, campus quotes otherwise | United States | Closed | Proprietary library format; Fusion adds sign-on, analytics and AI under Clarivate's cloud |
 | Citavi (Lumivero) | Campus license, quote-based | Provider cloud, run by Lumivero | Closed | At least one German university forbids storing personal or confidential project data in the Citavi cloud |
-| Paperpile | From roughly $50 per user per year with the academic discount, site licenses quoted | The user's own Google Drive | Closed | Requires Google accounts; export through open formats |
-| Lean Library Workspace, formerly Sciwheel | Institutional, quoted | Provider cloud, run by Technology from Sage | Closed | Dropped or migrated by several universities after the product changed hands and name |
+| Paperpile | From roughly $50 per user per year at list price, half that with the academic discount; site licenses quoted | The user's own Google Drive | Closed | Requires Google accounts; export through open formats |
+| Lean Library Workspace, formerly Sciwheel | Institutional, quoted | Provider cloud, run by Technology from Sage | Closed | Changed hands and name; users were moved to the renamed Lean Library extension in 2025 |
 | ReadCube and Papers (Digital Science) | Individual and institutional | United States | Closed | Niche in the Netherlands |
 | JabRef | Free | No central service | Open source | BibTeX-centered, no managed group synchronization, so it solves a different problem |
 
@@ -108,14 +108,14 @@ What the user runs:
 | Product | Desktop app | Browser connector | Word processor plugins | PDF reader with annotations | Mobile apps | Open source |
 |---|---|---|---|---|---|---|
 | Zotero Desktop | Windows, macOS, Linux | Yes, all major browsers | Word, LibreOffice, Google Docs | Yes | iOS and Android | Yes |
-| EndNote 2025 and Fusion | Windows, macOS | Yes | Word; Google Docs through EndNote Web | Yes | None current | No |
+| EndNote 2025 and Fusion | Windows, macOS | Yes | Word, plus LibreOffice and OpenOffice on Windows; Google Docs through EndNote Web | Yes | iOS only, iPhone and iPad | No |
 | Mendeley Reference Manager | Windows, macOS, Linux | Yes | Word | Yes | None; the old apps were retired in 2021 | No |
 | Citavi | Windows, plus a web app | Yes, the Citavi Picker | Word | Yes | None; web only | No |
 | Paperpile | None, it is a web app | Yes | Word and Google Docs | Yes | iOS and Android | No |
-| Lean Library Workspace | None, web app | Yes | Word | Yes | None | No |
+| Lean Library Workspace | None, web app | Yes | Word and Google Docs | Yes | None | No |
 | ReadCube and Papers | Windows, macOS | Yes | Word | Yes | iOS and Android | No |
 | JabRef | Windows, macOS, Linux (Java) | Yes, BibTeX capture | LibreOffice native, Word via add-ons | Basic | None | Yes, MIT |
-| RefWorks, being retired | None, web app | Yes | Word, Write-n-Cite | Basic | None | No |
+| RefWorks, being retired | None, web app | Yes | Word and Google Docs through RefWorks Citation Manager | Basic | None | No |
 
 What the institution runs:
 
@@ -126,9 +126,9 @@ What the institution runs:
 | Zotero dataserver, self-hosted | Self-hosted only, no supported installation | Yes | No | None, no admin interface | Yes, Web API v3 |
 | Zotero with WebDAV | Any WebDAV server, attachment files only | No, personal library files only | No | No | No, metadata stays on zotero.org |
 | EndNote and Fusion | Managed only, Clarivate | Yes, shared groups and projects | Fusion: yes | Fusion: admin console with analytics | No |
-| Mendeley | Managed only, Elsevier | Limited on the free tier since the institutional edition ended | No | None | Limited, closed program |
+| Mendeley | Managed only, Elsevier | Limited: 5 groups of up to 25 members and 100 MB shared storage on the free tier | No | None | Limited, closed program |
 | Citavi | Lumivero cloud, or Citavi DB Server on a local Windows server for shared projects | Shared projects, yes | No | License management only | No |
-| Paperpile | Managed only, on Google infrastructure | Yes, shared libraries | Through Google accounts | Site license console | Limited, export through Google Drive |
+| Paperpile | Managed only, on Google infrastructure | Yes, shared libraries | Google accounts, or SAML SSO on institutional plans | Site license console | Limited, export through Google Drive |
 | Lean Library Workspace | Managed only | Yes, shared projects | Not verified | Not verified | No |
 | ReadCube and Papers | Managed only | Shared collections | Not verified | Not verified | No |
 | JabRef | No server; share files or a Git repository | No | No | No | No |
@@ -138,18 +138,18 @@ What the institution runs:
 
 Where each product already has a Dutch footprint, and who to ask for
 first-hand experience and prices. The commercial pattern here is not subtle:
-every Dutch RefWorks licensee is leaving the product, Twente has now dropped
-two reference managers in two years, and the replacements are either Zotero or
-Clarivate products.
+the Dutch university RefWorks licensees below are all leaving the product,
+Twente has now dropped two reference managers in two years, and the
+replacements are Zotero, Mendeley or Clarivate products.
 
 | Product | Known use in the Netherlands | Where to get more detail |
 |---|---|---|
 | Zotero, client | Guides and support at nearly every university library, including Utrecht, Leiden, Amsterdam and Twente | The libraries' information specialists |
-| Zotero, institution storage | Not public. At least two universities: the originator of this proposal (about 5,000 euro per year for roughly 5,000 FTE and 10,000 students) and Twente, whose campus-wide license has run since September 2025 with unlimited storage for institutional addresses | zotero.org storage contact; the two libraries directly |
+| Zotero, institution storage | The University of Twente, the originator of this proposal: a Zotero Institution subscription at about 5,000 euro per year covering roughly 5,000 FTE and 10,000 students, and a campus-wide license running since September 2025 with unlimited storage for @utwente.nl addresses | zotero.org storage contact; Twente's library |
 | EndNote | Campus licenses at Leiden, Radboud, Maastricht and Utrecht; Radboud's version is distributed through SURFspot. Twente ends its license on December 31, 2025 | The libraries; SURFspot for member pricing; Clarivate sales |
-| EndNote Fusion | Erasmus University Rotterdam is migrating its RefWorks users to Fusion | The EUR library; Clarivate sales |
+| EndNote Fusion | Erasmus University Rotterdam moved its RefWorks users to Fusion in October 2026 | The EUR library; Clarivate sales |
 | Mendeley | Twente's institutional license ended in December 2024. Avans moved its users from RefWorks to Mendeley | Twente's library; Avans Xplora; Elsevier support |
-| RefWorks | Groningen ended it in December 2025, Utrecht required data export before January, Amsterdam ended access on June 30, 2025, and Erasmus is moving to Fusion | The four libraries; Clarivate |
+| RefWorks | Groningen ended it in December 2025, Utrecht required data export before January, Amsterdam ended access on June 30, 2025, and Erasmus moved to Fusion | The four libraries; Clarivate |
 | Citavi | No public Dutch campus license found; the published adoption list covers German institutions | Lumivero or its reseller Alfasoft |
 | Paperpile | No public Dutch institutional licensees found | Paperpile sales |
 | Lean Library Workspace, formerly Sciwheel | No public Dutch licensees found | Technology from Sage |
@@ -161,9 +161,9 @@ interoperability: Zotero Desktop, its browser connector, its word processor
 plugins and its catalog of citation styles form one ecosystem, and only
 zotero.org and altero serve that client. Choosing another manager means
 choosing a different client and migrating every library. Second, product churn
-is the autonomy argument in practice: RefWorks is being retired, the Mendeley
-institutional edition ended in 2024, and Sciwheel users were moved to a
-renamed product. A hosted service always carries the risk that the product
+is the autonomy argument in practice: RefWorks is being retired, institutional
+Mendeley licenses ended at several universities in 2024, and Sciwheel users
+were moved to a renamed product. A hosted service always carries the risk that the product
 around the data changes or disappears. Self-hosting the server does not
 prevent that, but it keeps the data, the client and the exit path under the
 institutions' control.
@@ -221,10 +221,10 @@ data for reinstatement or removal under the retention policy.
 Planning figures: Dutch higher education has about one million students and
 roughly 100,000 to 150,000 staff. Confirm the exact numbers with UNL, the
 Vereniging Hogescholen and SURF when drafting the final proposal. Most of those
-people never need the server. Roughly half of all students never upload an
-attachment, about a quarter only use group libraries, and the FTE and student
-counts include many support staff and researchers who hardly use reference
-management. The scenarios below therefore assume 50 MB of attachments per
+people never need the server. By rough estimate, half of all students never
+upload an attachment and a quarter only use group libraries, and the FTE and
+student counts include many support staff and researchers who hardly use
+reference management. The scenarios below therefore assume 50 MB of attachments per
 active user on average, treated as an upper limit for the first estimate, and
 refit from pilot telemetry once real numbers exist. Deduplication reinforces
 this: files are stored once per digest, so the PDF a supervisor and ten PhD
@@ -253,17 +253,19 @@ and the virtual machines dominate the infrastructure cost.
 
 | Scenario | Infrastructure per year | Staff per year | Total | Per active user per year |
 |---|---|---|---|---|
-| Pilot, 2,000 users | 1,500 to 3,000 euro | 9,000 to 14,000 euro | 10,500 to 17,000 euro | 5 to 8.50 euro |
-| Early production, 25,000 users | 2,000 to 6,500 euro | 14,000 to 23,000 euro | 16,000 to 29,500 euro | 0.65 to 1.20 euro |
-| National, 100,000 users | 10,000 to 20,000 euro | 23,000 to 36,000 euro | 33,000 to 56,000 euro | 0.35 to 0.55 euro |
+| Pilot, 2,000 users | 1,500 to 3,000 euro | 9,000 to 14,000 euro | 10,500 to 17,000 euro | 5.25 to 8.50 euro |
+| Early production, 25,000 users | 2,000 to 6,500 euro | 14,000 to 23,000 euro | 16,000 to 29,500 euro | 0.64 to 1.18 euro |
+| National, 100,000 users | 10,000 to 20,000 euro | 23,000 to 36,000 euro | 33,000 to 56,000 euro | 0.33 to 0.56 euro |
 
-The honest comparison comes from the status quo. One Dutch university already
-pays about 5,000 euro per year for a Zotero institution subscription with
-unlimited storage, covering roughly 5,000 FTE and 10,000 students. Scaled by
+The honest comparison comes from the status quo. The University of Twente, the
+originator of this proposal, already pays about 5,000 euro per year for a
+Zotero institution subscription with unlimited storage, covering roughly
+5,000 FTE and 10,000 students. Scaled by
 addressable population to the whole sector, about 75 times larger, that is
 roughly 350,000 to 400,000 euro per year in total. A shared national server at
-100,000 active users costs about a tenth of that, works out to roughly 600 to
-1,000 euro per institution per year, and adds what the subscription does not
+100,000 active users costs about a tenth of that, works out to roughly 650 to
+1,100 euro per institution per year across the sector's roughly fifty
+institutions, and adds what the subscription does not
 offer: the data stays in the country and sign-in runs through SURFconext. The
 pilot costs more per active user, which is normal, and buys the evidence
 needed for the national decision.
@@ -305,8 +307,8 @@ implemented. The warnings that matter for this proposal:
 
 - [Why altero exists](https://altero.run/latest/motivation/) and the
   [implementation status](https://altero.run/latest/status/)
-- [SURFconext OpenID Connect reference](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128909841/)
-  and [connecting in five steps](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128910038/)
+- [SURFconext OpenID Connect reference](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128909841/OpenID+Connect+reference)
+  and [connecting in five steps](https://servicedesk.surf.nl/wiki/spaces/IAM/pages/128910038/Connect+to+SURFconext+in+5+Steps)
 - [Zotero storage pricing](https://www.zotero.org/storage/) and the
   [institution storage FAQ](https://www.zotero.org/support/storage_institutions_faq)
 - [EndNote site license order form, University of Hawaiʻi](https://www.hawaii.edu/sitelic/endnote/endnoteform.pdf),
