@@ -91,9 +91,9 @@ individually where no public figure exists.
 |---|---|---|---|---|
 | RefWorks (Clarivate) | Campus subscription, quote-based | United States | Closed | Being retired; Clarivate purges accounts 120 days after a license ends, and steers users to EndNote Fusion |
 | EndNote and EndNote Fusion (Clarivate) | About $110 per seat per year in one public program, campus quotes otherwise | United States | Closed | Proprietary library format; Fusion adds sign-on, analytics and AI under Clarivate's cloud |
-| Citavi (Lumivero) | Campus license, quote-based | Provider cloud on Microsoft Azure | Closed | At least one German university forbids storing personal or confidential project data in the Citavi cloud |
+| Citavi (Lumivero) | Campus license, quote-based | Provider cloud, run by Lumivero | Closed | At least one German university forbids storing personal or confidential project data in the Citavi cloud |
 | Paperpile | From roughly $50 per user per year with the academic discount, site licenses quoted | The user's own Google Drive | Closed | Requires Google accounts; export through open formats |
-| Lean Library Workspace, formerly Sciwheel | Institutional, quoted | United States | Closed | Dropped or migrated by several universities after the product changed hands and name |
+| Lean Library Workspace, formerly Sciwheel | Institutional, quoted | Provider cloud, run by Technology from Sage | Closed | Dropped or migrated by several universities after the product changed hands and name |
 | ReadCube and Papers (Digital Science) | Individual and institutional | United States | Closed | Niche in the Netherlands |
 | JabRef | Free | No central service | Open source | BibTeX-centered, no managed group synchronization, so it solves a different problem |
 
