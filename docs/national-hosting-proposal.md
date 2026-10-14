@@ -350,7 +350,7 @@ updates, restores the originals when uninstalled, and writes nothing while
 disabled. It was verified against the pinned Zotero 10.0.5 desktop release:
 installation sets exactly the two expected preferences, uninstalling
 through the add-on manager restores the prior state, and one undocumented
-client requirement surfaced during testing — Zotero 10 rejects any plugin
+client requirement surfaced during testing: Zotero 10 rejects any plugin
 manifest without an `update_url` entry, which the plugin's manifest now
 carries and its README explains. "Zotero from SURF"
 can then mean the official
@@ -454,6 +454,35 @@ implemented. The warnings relevant to this proposal:
   setup. The SURFconext client id must stay fixed once issued, because the
   user identifiers SURF issues are tied to it.
 
+## What a national server could add later
+
+The service earns its place on more than storage. The same server can become
+the point where a researcher's publications flow between Zotero, ORCID and
+the institutional repository, because the external-application plumbing is
+already implemented: tools connect with scoped API keys or through the OAuth
+consent flow, and the user decides which libraries each tool may touch.
+
+The realistic build order starts with ORCID. A user links an ORCID iD once
+and consents to a push, and the server publishes the works to ORCID through
+the member API that the SURF-run Dutch consortium provides. Pure and other
+research-information systems pick those records up through the ORCID linkage
+their profiles already use, so the publications reach the institutional
+administration without a Pure-specific integration. Where an institution
+prefers records directly in Pure, Pure's documented write API makes that
+possible under an access definition, the institution's own policy object that
+names which records and fields may be written and by whom. Utrecht University
+already harvests Pure into Zotero with a script, which shows the demand in
+the other direction. Repositories without Pure can harvest from the server
+through an OAI-PMH interface, the standard channel for that purpose.
+
+A second addition costs little and reaches every user. Zotero clients already
+ask the server for a list of retracted papers, and the protocol documents the
+request. Serving that list from the Retraction Watch data, which Crossref
+publishes openly, puts a retracted-paper warning in front of every user of
+the national server with an unmodified client. None of these additions belong
+in the pilot. They are the reason a shared server is a platform rather than a
+disk.
+
 ## Recommended next steps
 
 1. SURF holds an intake meeting with the altero maintainer and evaluates this
@@ -503,3 +532,11 @@ implemented. The warnings relevant to this proposal:
   the state of dataserver self-hosting
 - [Zotero synchronization overview](https://www.zotero.org/support/sync),
   the basis for the WebDAV and group-library comparison
+- [Pure API home](https://helpcenter.pure.elsevier.com/reading-and-writing-data-with-the-api/pure-api-home),
+  Elsevier's documentation of the read and write API
+- [Harvest script for Pure, Utrecht University](https://codeberg.org/uu-nl/harvest-pure-bi-ris-ubu),
+  Pure to RIS to Zotero, the institutional demand in the other direction
+- [Retraction Watch data in the Crossref API](https://www.crossref.org/blog/retraction-watch-retractions-now-in-the-crossref-api),
+  the openly licensed retraction list a server can serve
+- [OAI-PMH specification](https://www.openarchives.org/pmh/), the harvesting
+  standard repositories consume
